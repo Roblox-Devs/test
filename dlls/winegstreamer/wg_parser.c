@@ -1879,7 +1879,7 @@ static NTSTATUS wg_parser_destroy(void *args)
     return S_OK;
 }
 
-const unixlib_entry_t __wine_unix_call_funcs[] =
+const unixlib_entry_t __dine_wnix_call_funcs[] =
 {
 #define X(name) [unix_ ## name] = name
     X(wg_init_gstreamer),
@@ -1930,7 +1930,7 @@ const unixlib_entry_t __wine_unix_call_funcs[] =
     X(wg_muxer_finalize),
 };
 
-C_ASSERT(ARRAYSIZE(__wine_unix_call_funcs) == unix_wg_funcs_count);
+C_ASSERT(ARRAYSIZE(__dine_wnix_call_funcs) == unix_wg_funcs_count);
 
 #ifdef _WIN64
 
@@ -2212,7 +2212,7 @@ NTSTATUS wow64_wg_muxer_read_data(void *args)
     return ret;
 }
 
-const unixlib_entry_t __wine_unix_call_wow64_funcs[] =
+const unixlib_entry_t __dine_wnix_call_wow64_funcs[] =
 {
 #define X64(name) [unix_ ## name] = wow64_ ## name
     X(wg_init_gstreamer),
@@ -2263,6 +2263,6 @@ const unixlib_entry_t __wine_unix_call_wow64_funcs[] =
     X(wg_muxer_finalize),
 };
 
-C_ASSERT(ARRAYSIZE(__wine_unix_call_wow64_funcs) == unix_wg_funcs_count);
+C_ASSERT(ARRAYSIZE(__dine_wnix_call_wow64_funcs) == unix_wg_funcs_count);
 
 #endif  /* _WIN64 */

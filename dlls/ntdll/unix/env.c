@@ -354,7 +354,7 @@ static BOOL is_dynamic_env_var( const char *var )
             STARTS_WITH( var, "WINECONFIGDIR=" ) ||
             STARTS_WITH( var, "WINELOADER=" ) ||
             STARTS_WITH( var, "WINEDLLDIR" ) ||
-            STARTS_WITH( var, "WINEUNIXCP=" ) ||
+            STARTS_WITH( var, "DINEWNIXCP=" ) ||
             STARTS_WITH( var, "WINEUSERLOCALE=" ) ||
             STARTS_WITH( var, "WINEUSERNAME=" ) ||
             STARTS_WITH( var, "WINEPRELOADRESERVE=" ) ||
@@ -1102,9 +1102,9 @@ static void add_dynamic_environment( WCHAR **env, SIZE_T *pos, SIZE_T *size )
     if (unix_cp.CodePage != CP_UTF8)
     {
         snprintf( str, sizeof(str), "%u", unix_cp.CodePage );
-        append_envA( env, pos, size, "WINEUNIXCP", str );
+        append_envA( env, pos, size, "DINEWNIXCP", str );
     }
-    else append_envW( env, pos, size, "WINEUNIXCP", NULL );
+    else append_envW( env, pos, size, "DINEWNIXCP", NULL );
     append_envA( env, pos, size, "WINEUSERLOCALE", user_locale );
     append_envA( env, pos, size, "SystemDrive", "C:" );
     append_envA( env, pos, size, "SystemRoot", "C:\\windows" );

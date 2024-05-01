@@ -1204,7 +1204,7 @@ static NTSTATUS key_asymmetric_create( enum alg_id alg_id, ULONG bitlen, struct 
 {
     struct key *key;
 
-    if (!__wine_unixlib_handle)
+    if (!__dine_unixlib_handle)
     {
         ERR( "no encryption support\n" );
         return STATUS_NOT_IMPLEMENTED;
@@ -1987,7 +1987,7 @@ NTSTATUS WINAPI BCryptGenerateSymmetricKey( BCRYPT_ALG_HANDLE handle, BCRYPT_KEY
 
     TRACE( "%p, %p, %p, %lu, %p, %lu, %#lx\n", handle, ret_handle, object, object_len, secret, secret_len, flags );
     if (object) FIXME( "ignoring object buffer\n" );
-    if (!__wine_unixlib_handle)
+    if (!__dine_unixlib_handle)
     {
         ERR( "no encryption support\n" );
         return STATUS_NOT_IMPLEMENTED;
@@ -2667,12 +2667,12 @@ BOOL WINAPI DllMain( HINSTANCE hinst, DWORD reason, LPVOID reserved )
         DisableThreadLibraryCalls( hinst );
         if (!__wine_init_unix_call())
         {
-            if (UNIX_CALL( process_attach, NULL)) __wine_unixlib_handle = 0;
+            if (UNIX_CALL( process_attach, NULL)) __dine_unixlib_handle = 0;
         }
         break;
     case DLL_PROCESS_DETACH:
         if (reserved) break;
-        if (__wine_unixlib_handle) UNIX_CALL( process_detach, NULL );
+        if (__dine_unixlib_handle) UNIX_CALL( process_detach, NULL );
         break;
     }
     return TRUE;

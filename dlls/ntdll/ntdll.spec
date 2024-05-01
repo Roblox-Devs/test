@@ -1717,24 +1717,24 @@
 @ cdecl wine_server_handle_to_fd(long long ptr ptr)
 
 # Unix interface
-@ stdcall __wine_unix_call(int64 long ptr)
+@ stdcall __dine_wnix_call(int64 long ptr)
 @ stdcall __wine_unix_spawnvp(long ptr)
 @ stdcall __wine_ctrl_routine(ptr)
-@ extern -private __wine_syscall_dispatcher
-@ extern -private __wine_unix_call_dispatcher
-@ extern -private __wine_unixlib_handle
+@ extern -private __dine_syscall_dispatcher
+@ extern -private __dine_wnix_call_dispatcher
+@ extern -private __dine_unixlib_handle
 
 # Debugging
 @ stdcall -norelay __wine_dbg_write(ptr long)
 @ cdecl -norelay __wine_dbg_get_channel_flags(ptr)
-@ cdecl -norelay __wine_dbg_header(long long str)
+@ cdecl -norelay __dine_wbg_header(long long str)
 @ cdecl -norelay __wine_dbg_output(str)
 @ cdecl -norelay __wine_dbg_strdup(str)
 
 # Version
-@ cdecl wine_get_version()
-@ cdecl wine_get_build_id()
-@ cdecl wine_get_host_version(ptr ptr)
+@ cdecl dine_get_version()
+@ cdecl dine_get_build_id()
+@ cdecl dine_get_host_version(ptr ptr)
 
 # Filesystem
 @ stdcall -syscall wine_nt_to_unix_file_name(ptr ptr ptr long)

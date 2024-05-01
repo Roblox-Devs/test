@@ -639,7 +639,7 @@ static NTSTATUS usb_destroy_device(void *args)
     return STATUS_SUCCESS;
 }
 
-const unixlib_entry_t __wine_unix_call_funcs[] =
+const unixlib_entry_t __dine_wnix_call_funcs[] =
 {
 #define X(name) [unix_ ## name] = name
     X(usb_main_loop),

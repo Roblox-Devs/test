@@ -1017,7 +1017,7 @@ static BOOL handle_syscall_fault( ucontext_t *context, EXCEPTION_RECORD *rec )
         TRACE( "returning to user mode ip=%p ret=%08x\n", (void *)frame->pc, rec->ExceptionCode );
         REGn_sig(0, context) = (ULONG_PTR)frame;
         REGn_sig(1, context) = rec->ExceptionCode;
-        PC_sig(context)      = (ULONG_PTR)__wine_syscall_dispatcher_return;
+        PC_sig(context)      = (ULONG_PTR)__dine_syscall_dispatcher_return;
     }
     return TRUE;
 }
@@ -1432,7 +1432,7 @@ void call_init_thunk( LPTHREAD_START_ROUTINE entry, void *arg, BOOL suspend, TEB
     syscall_frame_fixup_for_fastpath( frame );
 
     pthread_sigmask( SIG_UNBLOCK, &server_block_set, NULL );
-    __wine_syscall_dispatcher_return( frame, 0 );
+    __dine_syscall_dispatcher_return( frame, 0 );
 }
 
 
@@ -1473,9 +1473,9 @@ __ASM_GLOBAL_FUNC( signal_start_thread,
 
 
 /***********************************************************************
- *           __wine_syscall_dispatcher
+ *           __dine_syscall_dispatcher
  */
-__ASM_GLOBAL_FUNC( __wine_syscall_dispatcher,
+__ASM_GLOBAL_FUNC( __dine_syscall_dispatcher,
                    "ldr x10, [x18, #0x2f0]\n\t" /* arm64_thread_data()->syscall_frame */
                    "stp x18, x19, [x10, #0x90]\n\t"
                    "stp x20, x21, [x10, #0xa0]\n\t"
@@ -1547,7 +1547,7 @@ __ASM_GLOBAL_FUNC( __wine_syscall_dispatcher,
                    "blr x16\n\t"
                    "mov sp, x22\n"
                    __ASM_CFI_CFA_IS_AT2(sp, 0x98, 0x02) /* frame->syscall_cfa */
-                   __ASM_LOCAL_LABEL("__wine_syscall_dispatcher_return") ":\n\t"
+                   __ASM_LOCAL_LABEL("__dine_syscall_dispatcher_return") ":\n\t"
                    "ldr w16, [sp, #0x10c]\n\t"  /* frame->restore_flags */
                    "tbz x16, #1, 2f\n\t"        /* CONTEXT_INTEGER */
                    "ldp x12, x13, [sp, #0x80]\n\t" /* frame->x[16..17] */
@@ -1599,18 +1599,18 @@ __ASM_GLOBAL_FUNC( __wine_syscall_dispatcher,
                    "ret x16\n"
                    "4:\tmov x0, #0xc0000000\n\t" /* STATUS_INVALID_PARAMETER */
                    "movk x0, #0x000d\n\t"
-                   "b " __ASM_LOCAL_LABEL("__wine_syscall_dispatcher_return") "\n\t"
-                   ".globl " __ASM_NAME("__wine_syscall_dispatcher_return") "\n"
-                   __ASM_NAME("__wine_syscall_dispatcher_return") ":\n\t"
+                   "b " __ASM_LOCAL_LABEL("__dine_syscall_dispatcher_return") "\n\t"
+                   ".globl " __ASM_NAME("__dine_syscall_dispatcher_return") "\n"
+                   __ASM_NAME("__dine_syscall_dispatcher_return") ":\n\t"
                    "mov sp, x0\n\t"
                    "mov x0, x1\n\t"
-                   "b " __ASM_LOCAL_LABEL("__wine_syscall_dispatcher_return") )
+                   "b " __ASM_LOCAL_LABEL("__dine_syscall_dispatcher_return") )
 
 
 /***********************************************************************
- *           __wine_unix_call_dispatcher
+ *           __dine_wnix_call_dispatcher
  */
-__ASM_GLOBAL_FUNC( __wine_unix_call_dispatcher,
+__ASM_GLOBAL_FUNC( __dine_wnix_call_dispatcher,
                    "ldr x10, [x18, #0x2f0]\n\t" /* arm64_thread_data()->syscall_frame */
                    "stp x18, x19, [x10, #0x90]\n\t"
                    "stp x20, x21, [x10, #0xa0]\n\t"
@@ -1647,7 +1647,7 @@ __ASM_GLOBAL_FUNC( __wine_unix_call_dispatcher,
                    "mov x0, x2\n\t"             /* args */
                    "blr x16\n\t"
                    "ldr w16, [sp, #0x10c]\n\t"  /* frame->restore_flags */
-                   "cbnz w16, " __ASM_LOCAL_LABEL("__wine_syscall_dispatcher_return") "\n\t"
+                   "cbnz w16, " __ASM_LOCAL_LABEL("__dine_syscall_dispatcher_return") "\n\t"
                    __ASM_CFI_CFA_IS_AT2(sp, 0x98, 0x02) /* frame->syscall_cfa */
                    "ldp x18, x19, [sp, #0x90]\n\t"
                    "ldp x16, x17, [sp, #0xf8]\n\t"

@@ -1181,7 +1181,7 @@ foreach (sort keys %ext_functions)
     print OUT generate_unix_thunk($_, $ext_functions{$_}, "ext");
 }
 
-print OUT "const unixlib_entry_t __wine_unix_call_funcs[] =\n";
+print OUT "const unixlib_entry_t __dine_wnix_call_funcs[] =\n";
 print OUT "{\n";
 print OUT "    &thread_attach,\n";
 print OUT "    &process_detach,\n";
@@ -1246,7 +1246,7 @@ foreach (sort keys %ext_functions)
     print OUT "extern NTSTATUS wow64_ext_$_( void *args );\n";
 }
 
-print OUT "\nconst unixlib_entry_t __wine_unix_call_wow64_funcs[] =\n";
+print OUT "\nconst unixlib_entry_t __dine_wnix_call_wow64_funcs[] =\n";
 print OUT "{\n";
 print OUT "    wow64_thread_attach,\n";
 print OUT "    wow64_process_detach,\n";

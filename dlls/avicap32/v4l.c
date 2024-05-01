@@ -125,14 +125,14 @@ static NTSTATUS get_device_desc(void *args)
     return STATUS_UNSUCCESSFUL;
 }
 
-const unixlib_entry_t __wine_unix_call_funcs[] =
+const unixlib_entry_t __dine_wnix_call_funcs[] =
 {
     get_device_desc,
 };
 
 #ifdef _WIN64
 
-const unixlib_entry_t __wine_unix_call_wow64_funcs[] =
+const unixlib_entry_t __dine_wnix_call_wow64_funcs[] =
 {
     get_device_desc,
 };

@@ -80,7 +80,7 @@ static NTSTATUS ct_close( void *args )
     return pCT_close(params->ctn);
 }
 
-const unixlib_entry_t __wine_unix_call_funcs[] =
+const unixlib_entry_t __dine_wnix_call_funcs[] =
 {
     attach,
     detach,
@@ -89,7 +89,7 @@ const unixlib_entry_t __wine_unix_call_funcs[] =
     ct_close,
 };
 
-C_ASSERT( ARRAYSIZE(__wine_unix_call_funcs) == unix_funcs_count );
+C_ASSERT( ARRAYSIZE(__dine_wnix_call_funcs) == unix_funcs_count );
 
 #ifdef _WIN64
 
@@ -122,7 +122,7 @@ static NTSTATUS wow64_ct_data( void *args )
     return ct_data( &params );
 }
 
-const unixlib_entry_t __wine_unix_call_wow64_funcs[] =
+const unixlib_entry_t __dine_wnix_call_wow64_funcs[] =
 {
     attach,
     detach,
@@ -131,6 +131,6 @@ const unixlib_entry_t __wine_unix_call_wow64_funcs[] =
     ct_close,
 };
 
-C_ASSERT( ARRAYSIZE(__wine_unix_call_wow64_funcs) == unix_funcs_count );
+C_ASSERT( ARRAYSIZE(__dine_wnix_call_wow64_funcs) == unix_funcs_count );
 
 #endif  /* _WIN64 */

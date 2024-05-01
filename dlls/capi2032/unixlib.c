@@ -117,7 +117,7 @@ static NTSTATUS capi_isinstalled( void *args )
     return capi20_isinstalled();
 }
 
-const unixlib_entry_t __wine_unix_call_funcs[] =
+const unixlib_entry_t __dine_wnix_call_funcs[] =
 {
     capi_register,
     capi_release,
@@ -131,4 +131,4 @@ const unixlib_entry_t __wine_unix_call_funcs[] =
     capi_isinstalled,
 };
 
-C_ASSERT( ARRAYSIZE(__wine_unix_call_funcs) == unix_funcs_count );
+C_ASSERT( ARRAYSIZE(__dine_wnix_call_funcs) == unix_funcs_count );

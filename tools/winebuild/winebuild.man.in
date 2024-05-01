@@ -355,7 +355,7 @@ i386).
 .B -syscall
 The function is an NT system call. A system call thunk will be
 generated, and the actual function will be called by the
-\fI__wine_syscall_dispatcher\fR function that will be generated on the
+\fI__dine_syscall_dispatcher\fR function that will be generated on the
 Unix library side.
 .TP
 .B -import

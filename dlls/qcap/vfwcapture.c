@@ -884,7 +884,7 @@ HRESULT vfw_capture_create(IUnknown *outer, IUnknown **out)
 {
     struct vfw_capture *object;
 
-    if (!InitOnceExecuteOnce(&init_once, load_capture_funcs, NULL, NULL) || !__wine_unixlib_handle)
+    if (!InitOnceExecuteOnce(&init_once, load_capture_funcs, NULL, NULL) || !__dine_unixlib_handle)
         return E_FAIL;
 
     if (!(object = calloc(1, sizeof(*object))))

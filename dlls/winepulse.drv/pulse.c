@@ -2535,7 +2535,7 @@ fail:
     return STATUS_SUCCESS;
 }
 
-const unixlib_entry_t __wine_unix_call_funcs[] =
+const unixlib_entry_t __dine_wnix_call_funcs[] =
 {
     pulse_process_attach,
     pulse_process_detach,
@@ -2573,7 +2573,7 @@ const unixlib_entry_t __wine_unix_call_funcs[] =
     pulse_not_implemented,
 };
 
-C_ASSERT(ARRAYSIZE(__wine_unix_call_funcs) == funcs_count);
+C_ASSERT(ARRAYSIZE(__dine_wnix_call_funcs) == funcs_count);
 
 #ifdef _WIN64
 
@@ -3006,7 +3006,7 @@ static NTSTATUS pulse_wow64_get_prop_value(void *args)
     return STATUS_SUCCESS;
 }
 
-const unixlib_entry_t __wine_unix_call_wow64_funcs[] =
+const unixlib_entry_t __dine_wnix_call_wow64_funcs[] =
 {
     pulse_process_attach,
     pulse_process_detach,
@@ -3044,6 +3044,6 @@ const unixlib_entry_t __wine_unix_call_wow64_funcs[] =
     pulse_not_implemented,
 };
 
-C_ASSERT(ARRAYSIZE(__wine_unix_call_wow64_funcs) == funcs_count);
+C_ASSERT(ARRAYSIZE(__dine_wnix_call_wow64_funcs) == funcs_count);
 
 #endif /* _WIN64 */

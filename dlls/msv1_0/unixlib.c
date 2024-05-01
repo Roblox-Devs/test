@@ -239,7 +239,7 @@ static NTSTATUS ntlm_check_version( void *args )
     return status;
 }
 
-const unixlib_entry_t __wine_unix_call_funcs[] =
+const unixlib_entry_t __dine_wnix_call_funcs[] =
 {
     ntlm_chat,
     ntlm_cleanup,
@@ -247,7 +247,7 @@ const unixlib_entry_t __wine_unix_call_funcs[] =
     ntlm_check_version,
 };
 
-C_ASSERT( ARRAYSIZE(__wine_unix_call_funcs) == unix_funcs_count );
+C_ASSERT( ARRAYSIZE(__dine_wnix_call_funcs) == unix_funcs_count );
 
 #ifdef _WIN64
 
@@ -299,7 +299,7 @@ static NTSTATUS wow64_ntlm_fork( void *args )
     return ret;
 }
 
-const unixlib_entry_t __wine_unix_call_wow64_funcs[] =
+const unixlib_entry_t __dine_wnix_call_wow64_funcs[] =
 {
     wow64_ntlm_chat,
     ntlm_cleanup,
@@ -307,6 +307,6 @@ const unixlib_entry_t __wine_unix_call_wow64_funcs[] =
     ntlm_check_version,
 };
 
-C_ASSERT( ARRAYSIZE(__wine_unix_call_wow64_funcs) == unix_funcs_count );
+C_ASSERT( ARRAYSIZE(__dine_wnix_call_wow64_funcs) == unix_funcs_count );
 
 #endif  /* _WIN64 */

@@ -1240,7 +1240,7 @@ static NTSTATUS wrap_SQLTransact( void *args )
     return pSQLTransact(params->EnvironmentHandle, params->ConnectionHandle, params->CompletionType);
 }
 
-const unixlib_entry_t __wine_unix_call_funcs[NB_ODBC_FUNCS] =
+const unixlib_entry_t __dine_wnix_call_funcs[NB_ODBC_FUNCS] =
 {
     odbc_process_attach,
     odbc_process_detach,

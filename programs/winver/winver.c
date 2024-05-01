@@ -25,11 +25,11 @@
 int PASCAL WinMain (HINSTANCE inst, HINSTANCE prev, LPSTR cmdline, int show)
 {
     char name[128] = "Wine ";
-    const char * (CDECL *wine_get_version)(void);
+    const char * (CDECL *dine_get_version)(void);
 
     InitCommonControls();
 
-    wine_get_version = (void *)GetProcAddress( GetModuleHandleA("ntdll.dll"), "wine_get_version" );
-    if (wine_get_version) strcat( name, wine_get_version() );
+    dine_get_version = (void *)GetProcAddress( GetModuleHandleA("ntdll.dll"), "dine_get_version" );
+    if (dine_get_version) strcat( name, dine_get_version() );
     return !ShellAboutA( NULL, name, NULL, 0 );
 }

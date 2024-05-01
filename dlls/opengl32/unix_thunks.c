@@ -24202,7 +24202,7 @@ static NTSTATUS ext_wglSwapIntervalEXT( void *args )
     return STATUS_SUCCESS;
 }
 
-const unixlib_entry_t __wine_unix_call_funcs[] =
+const unixlib_entry_t __dine_wnix_call_funcs[] =
 {
     &thread_attach,
     &process_detach,
@@ -92322,7 +92322,7 @@ extern NTSTATUS wow64_ext_wglMakeContextCurrentARB( void *args );
 extern NTSTATUS wow64_ext_wglQueryCurrentRendererStringWINE( void *args );
 extern NTSTATUS wow64_ext_wglQueryRendererStringWINE( void *args );
 
-const unixlib_entry_t __wine_unix_call_wow64_funcs[] =
+const unixlib_entry_t __dine_wnix_call_wow64_funcs[] =
 {
     wow64_thread_attach,
     wow64_process_detach,

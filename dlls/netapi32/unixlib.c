@@ -975,7 +975,7 @@ end:
     return ret;
 }
 
-const unixlib_entry_t __wine_unix_call_funcs[] =
+const unixlib_entry_t __dine_wnix_call_funcs[] =
 {
     netapi_init,
     server_getinfo,
@@ -985,7 +985,7 @@ const unixlib_entry_t __wine_unix_call_funcs[] =
     change_password,
 };
 
-C_ASSERT( ARRAYSIZE(__wine_unix_call_funcs) == unix_funcs_count );
+C_ASSERT( ARRAYSIZE(__dine_wnix_call_funcs) == unix_funcs_count );
 
 #ifdef _WIN64
 
@@ -1094,7 +1094,7 @@ static NTSTATUS wow64_change_password( void *args )
     return change_password( &params );
 }
 
-const unixlib_entry_t __wine_unix_call_wow64_funcs[] =
+const unixlib_entry_t __dine_wnix_call_wow64_funcs[] =
 {
     netapi_init,
     wow64_server_getinfo,
@@ -1104,7 +1104,7 @@ const unixlib_entry_t __wine_unix_call_wow64_funcs[] =
     wow64_change_password,
 };
 
-C_ASSERT( ARRAYSIZE(__wine_unix_call_wow64_funcs) == unix_funcs_count );
+C_ASSERT( ARRAYSIZE(__dine_wnix_call_wow64_funcs) == unix_funcs_count );
 
 #endif  /* _WIN64 */
 

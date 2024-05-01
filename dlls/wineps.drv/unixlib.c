@@ -1740,14 +1740,14 @@ static NTSTATUS free_printer_info(void *arg)
     return 0;
 }
 
-const unixlib_entry_t __wine_unix_call_funcs[] =
+const unixlib_entry_t __dine_wnix_call_funcs[] =
 {
     free_printer_info,
     import_ntf,
     open_dc,
 };
 
-C_ASSERT(ARRAYSIZE(__wine_unix_call_funcs) == unix_funcs_count);
+C_ASSERT(ARRAYSIZE(__dine_wnix_call_funcs) == unix_funcs_count);
 
 #ifdef _WIN64
 
@@ -1790,13 +1790,13 @@ static NTSTATUS wow64_open_dc(void *args)
     return ret;
 }
 
-const unixlib_entry_t __wine_unix_call_wow64_funcs[] =
+const unixlib_entry_t __dine_wnix_call_wow64_funcs[] =
 {
     free_printer_info,
     wow64_import_ntf,
     wow64_open_dc,
 };
 
-C_ASSERT(ARRAYSIZE(__wine_unix_call_wow64_funcs) == unix_funcs_count);
+C_ASSERT(ARRAYSIZE(__dine_wnix_call_wow64_funcs) == unix_funcs_count);
 
 #endif  /* _WIN64 */

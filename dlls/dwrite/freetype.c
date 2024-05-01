@@ -801,7 +801,7 @@ static NTSTATUS get_design_glyph_metrics(void *args)
 
 #endif /* HAVE_FREETYPE */
 
-const unixlib_entry_t __wine_unix_call_funcs[] =
+const unixlib_entry_t __dine_wnix_call_funcs[] =
 {
     process_attach,
     process_detach,
@@ -815,7 +815,7 @@ const unixlib_entry_t __wine_unix_call_funcs[] =
     get_design_glyph_metrics,
 };
 
-C_ASSERT( ARRAYSIZE(__wine_unix_call_funcs) == unix_funcs_count );
+C_ASSERT( ARRAYSIZE(__dine_wnix_call_funcs) == unix_funcs_count );
 
 #ifdef _WIN64
 
@@ -1029,7 +1029,7 @@ static NTSTATUS wow64_get_design_glyph_metrics(void *args)
     return get_design_glyph_metrics(&params);
 };
 
-const unixlib_entry_t __wine_unix_call_wow64_funcs[] =
+const unixlib_entry_t __dine_wnix_call_wow64_funcs[] =
 {
     process_attach,
     process_detach,
@@ -1043,6 +1043,6 @@ const unixlib_entry_t __wine_unix_call_wow64_funcs[] =
     wow64_get_design_glyph_metrics,
 };
 
-C_ASSERT( ARRAYSIZE(__wine_unix_call_wow64_funcs) == unix_funcs_count );
+C_ASSERT( ARRAYSIZE(__dine_wnix_call_wow64_funcs) == unix_funcs_count );
 
 #endif  /* _WIN64 */

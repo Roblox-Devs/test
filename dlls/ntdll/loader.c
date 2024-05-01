@@ -70,14 +70,14 @@ typedef DWORD (CALLBACK *DLLENTRYPROC)(HMODULE,DWORD,LPVOID);
 typedef void  (CALLBACK *LDRENUMPROC)(LDR_DATA_TABLE_ENTRY *, void *, BOOLEAN *);
 
 void (FASTCALL *pBaseThreadInitThunk)(DWORD,LPTHREAD_START_ROUTINE,void *) = NULL;
-NTSTATUS (WINAPI *__wine_unix_call_dispatcher)( unixlib_handle_t, unsigned int, void * ) = __wine_unix_call;
+NTSTATUS (WINAPI *__dine_wnix_call_dispatcher)( unixlib_handle_t, unsigned int, void * ) = __dine_wnix_call;
 
 static DWORD (WINAPI *pCtrlRoutine)(void *);
 
 SYSTEM_DLL_INIT_BLOCK LdrSystemDllInitBlock = { 0xf0 };
 
-void *__wine_syscall_dispatcher = NULL;
-unixlib_handle_t __wine_unixlib_handle = 0;
+void *__dine_syscall_dispatcher = NULL;
+unixlib_handle_t __dine_unixlib_handle = 0;
 
 /* windows directory */
 const WCHAR windows_dir[] = L"C:\\windows";
@@ -3279,7 +3279,7 @@ static NTSTATUS load_dll( const WCHAR *load_path, const WCHAR *libname, DWORD fl
     switch (nts)
     {
     case STATUS_INVALID_IMAGE_NOT_MZ:  /* not in PE format, maybe it's a .so file */
-        if (__wine_unixlib_handle) nts = load_so_dll( load_path, &nt_name, flags, pwm );
+        if (__dine_unixlib_handle) nts = load_so_dll( load_path, &nt_name, flags, pwm );
         break;
 
     case STATUS_SUCCESS:  /* valid PE file */
@@ -3315,11 +3315,11 @@ NTSTATUS WINAPI __wine_ctrl_routine( void *arg )
 
 
 /***********************************************************************
- *              __wine_unix_call
+ *              __dine_wnix_call
  */
-NTSTATUS WINAPI __wine_unix_call( unixlib_handle_t handle, unsigned int code, void *args )
+NTSTATUS WINAPI __dine_wnix_call( unixlib_handle_t handle, unsigned int code, void *args )
 {
-    return __wine_unix_call_dispatcher( handle, code, args );
+    return __dine_wnix_call_dispatcher( handle, code, args );
 }
 
 

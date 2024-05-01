@@ -1189,21 +1189,21 @@ void info_win32_system(void)
     USHORT current, native;
     int i, count;
 
-    const char *(CDECL *wine_get_build_id)(void);
-    void (CDECL *wine_get_host_version)( const char **sysname, const char **release );
+    const char *(CDECL *dine_get_build_id)(void);
+    void (CDECL *dine_get_host_version)( const char **sysname, const char **release );
 
     static USHORT guest_machines[] =
     {
         IMAGE_FILE_MACHINE_I386, IMAGE_FILE_MACHINE_ARM, IMAGE_FILE_MACHINE_ARMNT,
     };
 
-    wine_get_build_id = (void *)GetProcAddress(GetModuleHandleA("ntdll.dll"), "wine_get_build_id");
-    wine_get_host_version = (void *)GetProcAddress(GetModuleHandleA("ntdll.dll"), "wine_get_host_version");
+    dine_get_build_id = (void *)GetProcAddress(GetModuleHandleA("ntdll.dll"), "dine_get_build_id");
+    dine_get_host_version = (void *)GetProcAddress(GetModuleHandleA("ntdll.dll"), "dine_get_host_version");
 
     RtlWow64GetProcessMachines( GetCurrentProcess(), &current, &native );
 
     dbg_printf( "System information:\n" );
-    if (wine_get_build_id) dbg_printf( "    Wine build: %s\n", wine_get_build_id() );
+    if (dine_get_build_id) dbg_printf( "    Wine build: %s\n", dine_get_build_id() );
     dbg_printf( "    Platform: %s", get_machine_str(native));
     for (count = i = 0; i < ARRAY_SIZE(guest_machines); i++)
     {
@@ -1216,10 +1216,10 @@ void info_win32_system(void)
     dbg_printf("%s\n", count ? ")" : "");
 
     dbg_printf( "    Version: Windows %s\n", get_windows_version() );
-    if (wine_get_host_version)
+    if (dine_get_host_version)
     {
         const char *sysname, *release;
-        wine_get_host_version( &sysname, &release );
+        dine_get_host_version( &sysname, &release );
         dbg_printf( "    Host system: %s\n", sysname );
         dbg_printf( "    Host version: %s\n", release );
     }

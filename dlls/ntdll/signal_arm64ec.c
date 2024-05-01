@@ -2255,7 +2255,7 @@ void *check_call( void **target, void *exit_thunk, void *dest )
 
     for (;;)
     {
-        if (dest == __wine_unix_call_dispatcher) return dest;
+        if (dest == __dine_wnix_call_dispatcher) return dest;
         if (RtlIsEcCode( (ULONG_PTR)dest )) return dest;
         if (code_match( dest, jmp_sequence, sizeof(jmp_sequence) ))
         {

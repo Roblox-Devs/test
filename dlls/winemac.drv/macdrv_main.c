@@ -615,7 +615,7 @@ static NTSTATUS macdrv_quit_result(void *arg)
 }
 
 
-const unixlib_entry_t __wine_unix_call_funcs[] =
+const unixlib_entry_t __dine_wnix_call_funcs[] =
 {
     macdrv_dnd_get_data,
     macdrv_dnd_get_formats,
@@ -626,7 +626,7 @@ const unixlib_entry_t __wine_unix_call_funcs[] =
     macdrv_quit_result,
 };
 
-C_ASSERT( ARRAYSIZE(__wine_unix_call_funcs) == unix_funcs_count );
+C_ASSERT( ARRAYSIZE(__dine_wnix_call_funcs) == unix_funcs_count );
 
 #ifdef _WIN64
 
@@ -660,7 +660,7 @@ static NTSTATUS wow64_init(void *arg)
     return macdrv_init(&params);
 }
 
-const unixlib_entry_t __wine_unix_call_wow64_funcs[] =
+const unixlib_entry_t __dine_wnix_call_wow64_funcs[] =
 {
     wow64_dnd_get_data,
     macdrv_dnd_get_formats,
@@ -671,6 +671,6 @@ const unixlib_entry_t __wine_unix_call_wow64_funcs[] =
     macdrv_quit_result,
 };
 
-C_ASSERT( ARRAYSIZE(__wine_unix_call_wow64_funcs) == unix_funcs_count );
+C_ASSERT( ARRAYSIZE(__dine_wnix_call_wow64_funcs) == unix_funcs_count );
 
 #endif /* _WIN64 */

@@ -1515,9 +1515,9 @@ NTSTATUS load_start_exe( WCHAR **image, void **module )
  */
 static void load_ntdll_functions( HMODULE module )
 {
-    void **p__wine_syscall_dispatcher;
-    void **p__wine_unix_call_dispatcher;
-    unixlib_handle_t *p__wine_unixlib_handle;
+    void **p__dine_syscall_dispatcher;
+    void **p__dine_wnix_call_dispatcher;
+    unixlib_handle_t *p__dine_unixlib_handle;
     const IMAGE_EXPORT_DIRECTORY *exports;
 
     exports = get_module_data_dir( module, IMAGE_DIRECTORY_ENTRY_EXPORT, NULL );
@@ -1536,12 +1536,12 @@ static void load_ntdll_functions( HMODULE module )
     GET_FUNC( LdrSystemDllInitBlock );
     GET_FUNC( RtlUserThreadStart );
     GET_FUNC( __wine_ctrl_routine );
-    GET_FUNC( __wine_syscall_dispatcher );
-    GET_FUNC( __wine_unix_call_dispatcher );
-    GET_FUNC( __wine_unixlib_handle );
-    *p__wine_syscall_dispatcher = __wine_syscall_dispatcher;
-    *p__wine_unix_call_dispatcher = __wine_unix_call_dispatcher;
-    *p__wine_unixlib_handle = (UINT_PTR)unix_call_funcs;
+    GET_FUNC( __dine_syscall_dispatcher );
+    GET_FUNC( __dine_wnix_call_dispatcher );
+    GET_FUNC( __dine_unixlib_handle );
+    *p__dine_syscall_dispatcher = __dine_syscall_dispatcher;
+    *p__dine_wnix_call_dispatcher = __dine_wnix_call_dispatcher;
+    *p__dine_unixlib_handle = (UINT_PTR)unix_call_funcs;
 #undef GET_FUNC
 }
 
@@ -1573,9 +1573,9 @@ static void load_ntdll_wow64_functions( HMODULE module )
 
 #ifdef _WIN64
     {
-        unixlib_handle_t *p__wine_unixlib_handle = (void *)find_named_export( module, exports,
-                                                                              "__wine_unixlib_handle" );
-        *p__wine_unixlib_handle = (UINT_PTR)unix_call_wow64_funcs;
+        unixlib_handle_t *p__dine_unixlib_handle = (void *)find_named_export( module, exports,
+                                                                              "__dine_unixlib_handle" );
+        *p__dine_unixlib_handle = (UINT_PTR)unix_call_wow64_funcs;
     }
 #endif
 

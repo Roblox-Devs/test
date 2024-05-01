@@ -29,8 +29,8 @@ typedef UINT64 unixlib_handle_t;
 
 typedef NTSTATUS (*unixlib_entry_t)( void *args );
 
-extern DECLSPEC_EXPORT const unixlib_entry_t __wine_unix_call_funcs[];
-extern DECLSPEC_EXPORT const unixlib_entry_t __wine_unix_call_wow64_funcs[];
+extern DECLSPEC_EXPORT const unixlib_entry_t __dine_wnix_call_funcs[];
+extern DECLSPEC_EXPORT const unixlib_entry_t __dine_wnix_call_wow64_funcs[];
 
 /* some useful helpers from ntdll */
 NTSYSAPI const char *ntdll_get_build_dir(void);
@@ -258,12 +258,12 @@ static inline ULONG ntdll_wcstoul( const WCHAR *s, WCHAR **end, int base )
 
 #else /* WINE_UNIX_LIB */
 
-NTSYSAPI NTSTATUS WINAPI __wine_unix_call( unixlib_handle_t handle, unsigned int code, void *args );
-extern unixlib_handle_t __wine_unixlib_handle;
-extern NTSTATUS (WINAPI *__wine_unix_call_dispatcher)( unixlib_handle_t, unsigned int, void * );
+NTSYSAPI NTSTATUS WINAPI __dine_wnix_call( unixlib_handle_t handle, unsigned int code, void *args );
+extern unixlib_handle_t __dine_unixlib_handle;
+extern NTSTATUS (WINAPI *__dine_wnix_call_dispatcher)( unixlib_handle_t, unsigned int, void * );
 extern NTSTATUS WINAPI __wine_init_unix_call(void);
 
-#define WINE_UNIX_CALL(code,args) __wine_unix_call_dispatcher( __wine_unixlib_handle, (code), (args) )
+#define WINE_UNIX_CALL(code,args) __dine_wnix_call_dispatcher( __dine_unixlib_handle, (code), (args) )
 
 #endif /* WINE_UNIX_LIB */
 

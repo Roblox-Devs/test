@@ -565,7 +565,7 @@ static NTSTATUS wrap_clWaitForEvents( void *args )
     return clWaitForEvents( params->num_events, params->event_list );
 }
 
-const unixlib_entry_t __wine_unix_call_funcs[] =
+const unixlib_entry_t __dine_wnix_call_funcs[] =
 {
     wrap_clBuildProgram,
     wrap_clCompileProgram,

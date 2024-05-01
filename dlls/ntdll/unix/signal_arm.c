@@ -810,7 +810,7 @@ static BOOL handle_syscall_fault( ucontext_t *context, EXCEPTION_RECORD *rec )
         TRACE( "returning to user mode ip=%08x ret=%08lx\n", frame->pc, rec->ExceptionCode );
         REGn_sig(0, context) = (DWORD)frame;
         REGn_sig(1, context) = rec->ExceptionCode;
-        PC_sig(context)      = (DWORD)__wine_syscall_dispatcher_return;
+        PC_sig(context)      = (DWORD)__dine_syscall_dispatcher_return;
     }
     return TRUE;
 }
@@ -1066,7 +1066,7 @@ void signal_init_threading(void)
  */
 NTSTATUS signal_alloc_thread( TEB *teb )
 {
-    teb->WOW32Reserved = __wine_syscall_dispatcher;
+    teb->WOW32Reserved = __dine_syscall_dispatcher;
     return STATUS_SUCCESS;
 }
 
@@ -1149,7 +1149,7 @@ void call_init_thunk( LPTHREAD_START_ROUTINE entry, void *arg, BOOL suspend, TEB
     frame->syscall_cfa    = syscall_cfa;
 
     pthread_sigmask( SIG_UNBLOCK, &server_block_set, NULL );
-    __wine_syscall_dispatcher_return( frame, 0 );
+    __dine_syscall_dispatcher_return( frame, 0 );
 }
 
 
@@ -1173,9 +1173,9 @@ __ASM_GLOBAL_FUNC( signal_start_thread,
 
 
 /***********************************************************************
- *           __wine_syscall_dispatcher
+ *           __dine_syscall_dispatcher
  */
-__ASM_GLOBAL_FUNC( __wine_syscall_dispatcher,
+__ASM_GLOBAL_FUNC( __dine_syscall_dispatcher,
                    __ASM_EHABI(".cantunwind\n\t")
                    "mrc p15, 0, r2, c13, c0, 2\n\t" /* NtCurrentTeb() */
                    "ldr r1, [r2, #0x1d8]\n\t"       /* arm_thread_data()->syscall_frame */
@@ -1232,7 +1232,7 @@ __ASM_GLOBAL_FUNC( __wine_syscall_dispatcher,
                    "ldr r5, [r4]\n\t"               /* table->ServiceTable */
                    "ldr ip, [r5, ip, lsl #2]\n\t"
                    "blx ip\n"
-                   __ASM_LOCAL_LABEL("__wine_syscall_dispatcher_return") ":\n\t"
+                   __ASM_LOCAL_LABEL("__dine_syscall_dispatcher_return") ":\n\t"
                    "ldr ip, [r8, #0x44]\n\t"    /* frame->restore_flags */
 #ifndef __SOFTFP__
                    "tst ip, #4\n\t"                 /* CONTEXT_FLOATING_POINT */
@@ -1254,18 +1254,18 @@ __ASM_GLOBAL_FUNC( __wine_syscall_dispatcher,
 
                    "5:\tmovw r0, #0x000d\n\t" /* STATUS_INVALID_PARAMETER */
                    "movt r0, #0xc000\n\t"
-                   "b " __ASM_LOCAL_LABEL("__wine_syscall_dispatcher_return") "\n\t"
-                   ".globl " __ASM_NAME("__wine_syscall_dispatcher_return") "\n"
-                   __ASM_NAME("__wine_syscall_dispatcher_return") ":\n\t"
+                   "b " __ASM_LOCAL_LABEL("__dine_syscall_dispatcher_return") "\n\t"
+                   ".globl " __ASM_NAME("__dine_syscall_dispatcher_return") "\n"
+                   __ASM_NAME("__dine_syscall_dispatcher_return") ":\n\t"
                    "mov r8, r0\n\t"
                    "mov r0, r1\n\t"
-                   "b " __ASM_LOCAL_LABEL("__wine_syscall_dispatcher_return") )
+                   "b " __ASM_LOCAL_LABEL("__dine_syscall_dispatcher_return") )
 
 
 /***********************************************************************
- *           __wine_unix_call_dispatcher
+ *           __dine_wnix_call_dispatcher
  */
-__ASM_GLOBAL_FUNC( __wine_unix_call_dispatcher,
+__ASM_GLOBAL_FUNC( __dine_wnix_call_dispatcher,
                    __ASM_EHABI(".cantunwind\n\t")
                    "mrc p15, 0, r1, c13, c0, 2\n\t" /* NtCurrentTeb() */
                    "ldr r1, [r1, #0x1d8]\n\t"       /* arm_thread_data()->syscall_frame */
@@ -1307,6 +1307,6 @@ __ASM_GLOBAL_FUNC( __wine_unix_call_dispatcher,
                    "ldr sp, [r8, #0x38]\n\t"
                    "add r8, r8, #0x10\n\t"
                    "ldm r8, {r4-r12,pc}\n\t"
-                   "1:\tb " __ASM_LOCAL_LABEL("__wine_syscall_dispatcher_return") )
+                   "1:\tb " __ASM_LOCAL_LABEL("__dine_syscall_dispatcher_return") )
 
 #endif  /* __arm__ */

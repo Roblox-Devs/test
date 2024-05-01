@@ -130,7 +130,7 @@ static NTSTATUS NTAPI kerberos_LsaApInitializePackage(ULONG package_id, PLSA_DIS
 {
     char *kerberos_name;
 
-    if (!__wine_unixlib_handle)
+    if (!__dine_unixlib_handle)
     {
         if (__wine_init_unix_call() || KRB5_CALL( process_attach, NULL ))
             ERR( "no Kerberos support, expect problems\n" );
@@ -702,7 +702,7 @@ static NTSTATUS NTAPI kerberos_SpInitialize(ULONG_PTR package_id, SECPKG_PARAMET
 {
     TRACE("%Iu, %p, %p\n", package_id, params, lsa_function_table);
 
-    if (!__wine_unixlib_handle)
+    if (!__dine_unixlib_handle)
     {
         if (__wine_init_unix_call() || KRB5_CALL( process_attach, NULL ))
             WARN( "no Kerberos support\n" );

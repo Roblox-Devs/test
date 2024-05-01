@@ -509,7 +509,7 @@ static NTSTATUS end_doc(void *args)
     return ret;
 }
 
-const unixlib_entry_t __wine_unix_call_funcs[] =
+const unixlib_entry_t __dine_wnix_call_funcs[] =
 {
     process_attach,
     start_doc,
@@ -517,7 +517,7 @@ const unixlib_entry_t __wine_unix_call_funcs[] =
     end_doc,
 };
 
-C_ASSERT( ARRAYSIZE(__wine_unix_call_funcs) == unix_funcs_count );
+C_ASSERT( ARRAYSIZE(__dine_wnix_call_funcs) == unix_funcs_count );
 
 #ifdef _WIN64
 
@@ -563,7 +563,7 @@ static NTSTATUS wow64_write_doc(void *args)
     return write_doc(&params);
 }
 
-const unixlib_entry_t __wine_unix_call_wow64_funcs[] =
+const unixlib_entry_t __dine_wnix_call_wow64_funcs[] =
 {
     process_attach,
     wow64_start_doc,
@@ -571,6 +571,6 @@ const unixlib_entry_t __wine_unix_call_wow64_funcs[] =
     end_doc,
 };
 
-C_ASSERT( ARRAYSIZE(__wine_unix_call_wow64_funcs) == unix_funcs_count );
+C_ASSERT( ARRAYSIZE(__dine_wnix_call_wow64_funcs) == unix_funcs_count );
 
 #endif  /* _WIN64 */

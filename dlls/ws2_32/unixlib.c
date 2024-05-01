@@ -1064,7 +1064,7 @@ static NTSTATUS unix_getnameinfo( void *args )
 }
 
 
-const unixlib_entry_t __wine_unix_call_funcs[] =
+const unixlib_entry_t __dine_wnix_call_funcs[] =
 {
     unix_getaddrinfo,
     unix_gethostbyaddr,
@@ -1073,7 +1073,7 @@ const unixlib_entry_t __wine_unix_call_funcs[] =
     unix_getnameinfo,
 };
 
-C_ASSERT( ARRAYSIZE(__wine_unix_call_funcs) == ws_unix_funcs_count );
+C_ASSERT( ARRAYSIZE(__dine_wnix_call_funcs) == ws_unix_funcs_count );
 
 #ifdef _WIN64
 
@@ -1344,7 +1344,7 @@ static NTSTATUS wow64_unix_getnameinfo( void *args )
     return unix_getnameinfo( &params );
 }
 
-const unixlib_entry_t __wine_unix_call_wow64_funcs[] =
+const unixlib_entry_t __dine_wnix_call_wow64_funcs[] =
 {
     wow64_unix_getaddrinfo,
     wow64_unix_gethostbyaddr,
@@ -1353,6 +1353,6 @@ const unixlib_entry_t __wine_unix_call_wow64_funcs[] =
     wow64_unix_getnameinfo,
 };
 
-C_ASSERT( ARRAYSIZE(__wine_unix_call_wow64_funcs) == ws_unix_funcs_count );
+C_ASSERT( ARRAYSIZE(__dine_wnix_call_wow64_funcs) == ws_unix_funcs_count );
 
 #endif  /* _WIN64 */

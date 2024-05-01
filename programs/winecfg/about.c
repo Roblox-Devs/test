@@ -38,7 +38,7 @@ static HFONT titleFont = NULL;
 INT_PTR CALLBACK
 AboutDlgProc (HWND hDlg, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
-    const char * (CDECL *wine_get_version)(void);
+    const char * (CDECL *dine_get_version)(void);
     HWND hWnd;
     HDC hDC;
     RECT rcClient, rcRect;
@@ -110,8 +110,8 @@ AboutDlgProc (HWND hDlg, UINT uMsg, WPARAM wParam, LPARAM lParam)
                                  0, 0, 0, 0, FALSE, 0, 0, 0, 0, 0, 0, 0, L"Tahoma" );
         SendDlgItemMessageW(hDlg, IDC_ABT_TITLE_TEXT, WM_SETFONT, (WPARAM)titleFont, TRUE);
 
-        wine_get_version = (void *)GetProcAddress( GetModuleHandleW(L"ntdll.dll"), "wine_get_version" );
-        if (wine_get_version) SetDlgItemTextA(hDlg, IDC_ABT_PANEL_TEXT, wine_get_version());
+        dine_get_version = (void *)GetProcAddress( GetModuleHandleW(L"ntdll.dll"), "dine_get_version" );
+        if (dine_get_version) SetDlgItemTextA(hDlg, IDC_ABT_PANEL_TEXT, dine_get_version());
 
         ReleaseDC(hDlg, hDC);
 

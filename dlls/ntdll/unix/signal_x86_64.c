@@ -1881,7 +1881,7 @@ static BOOL handle_syscall_fault( ucontext_t *sigcontext, EXCEPTION_RECORD *rec,
         TRACE_(seh)( "returning to user mode ip=%016lx ret=%08x\n", frame->rip, rec->ExceptionCode );
         RDI_sig(sigcontext) = (ULONG_PTR)frame;
         RSI_sig(sigcontext) = rec->ExceptionCode;
-        RIP_sig(sigcontext) = (ULONG_PTR)__wine_syscall_dispatcher_return;
+        RIP_sig(sigcontext) = (ULONG_PTR)__dine_syscall_dispatcher_return;
     }
     return TRUE;
 }
@@ -1898,17 +1898,17 @@ static BOOL handle_syscall_trap( ucontext_t *sigcontext )
 
     /* disallow single-stepping through a syscall */
 
-    if ((void *)RIP_sig( sigcontext ) == __wine_syscall_dispatcher)
+    if ((void *)RIP_sig( sigcontext ) == __dine_syscall_dispatcher)
     {
-        extern const void *__wine_syscall_dispatcher_prolog_end_ptr;
+        extern const void *__dine_syscall_dispatcher_prolog_end_ptr;
 
-        RIP_sig( sigcontext ) = (ULONG64)__wine_syscall_dispatcher_prolog_end_ptr;
+        RIP_sig( sigcontext ) = (ULONG64)__dine_syscall_dispatcher_prolog_end_ptr;
     }
-    else if ((void *)RIP_sig( sigcontext ) == __wine_unix_call_dispatcher)
+    else if ((void *)RIP_sig( sigcontext ) == __dine_wnix_call_dispatcher)
     {
-        extern const void *__wine_unix_call_dispatcher_prolog_end_ptr;
+        extern const void *__dine_wnix_call_dispatcher_prolog_end_ptr;
 
-        RIP_sig( sigcontext ) = (ULONG64)__wine_unix_call_dispatcher_prolog_end_ptr;
+        RIP_sig( sigcontext ) = (ULONG64)__dine_wnix_call_dispatcher_prolog_end_ptr;
         R10_sig( sigcontext ) = RCX_sig( sigcontext );
     }
     else return FALSE;
@@ -2425,7 +2425,7 @@ void signal_init_process(void)
     /* sneak in a syscall dispatcher pointer at a fixed address (7ffe1000) */
     ptr = (char *)user_shared_data + page_size;
     anon_mmap_fixed( ptr, page_size, PROT_READ | PROT_WRITE, 0 );
-    *(void **)ptr = __wine_syscall_dispatcher;
+    *(void **)ptr = __dine_syscall_dispatcher;
 
     if (cpu_info.ProcessorFeatureBits & CPU_FEATURE_XSAVE) syscall_flags |= SYSCALL_HAVE_XSAVE;
     if (xstate_compaction_enabled) syscall_flags |= SYSCALL_HAVE_XSAVEC;
@@ -2588,7 +2588,7 @@ void call_init_thunk( LPTHREAD_START_ROUTINE entry, void *arg, BOOL suspend, TEB
     frame->syscall_cfa   = syscall_cfa;
 
     pthread_sigmask( SIG_UNBLOCK, &server_block_set, NULL );
-    __wine_syscall_dispatcher_return( frame, 0 );
+    __dine_syscall_dispatcher_return( frame, 0 );
 }
 
 
@@ -2628,9 +2628,9 @@ __ASM_GLOBAL_FUNC( signal_start_thread,
 
 
 /***********************************************************************
- *           __wine_syscall_dispatcher
+ *           __dine_syscall_dispatcher
  */
-__ASM_GLOBAL_FUNC( __wine_syscall_dispatcher,
+__ASM_GLOBAL_FUNC( __dine_syscall_dispatcher,
 #ifdef __APPLE__
                    "movq %gs:0x30,%rcx\n\t"
                    "movq 0x328(%rcx),%rcx\n\t"
@@ -2645,7 +2645,7 @@ __ASM_GLOBAL_FUNC( __wine_syscall_dispatcher,
                    "popq 0x80(%rcx)\n\t"
                    __ASM_CFI(".cfi_adjust_cfa_offset -8\n\t")
                    "movl $0,0xb4(%rcx)\n\t"        /* frame->restore_flags */
-                   __ASM_LOCAL_LABEL("__wine_syscall_dispatcher_prolog_end") ":\n\t"
+                   __ASM_LOCAL_LABEL("__dine_syscall_dispatcher_prolog_end") ":\n\t"
                    "movq %rax,0x00(%rcx)\n\t"
                    "movq %rbx,0x08(%rcx)\n\t"
                    __ASM_CFI_REG_IS_AT1(rbx, rcx, 0x08)
@@ -2776,7 +2776,7 @@ __ASM_GLOBAL_FUNC( __wine_syscall_dispatcher,
                    "movq (%rbx),%r10\n\t"          /* table->ServiceTable */
                    "callq *(%r10,%rax,8)\n\t"
                    "leaq -0x98(%rbp),%rcx\n\t"
-                   __ASM_LOCAL_LABEL("__wine_syscall_dispatcher_return") ":\n\t"
+                   __ASM_LOCAL_LABEL("__dine_syscall_dispatcher_return") ":\n\t"
                    "movl 0xb4(%rcx),%edx\n\t"      /* frame->restore_flags */
                    "testl $0x48,%edx\n\t"          /* CONTEXT_FLOATING_POINT | CONTEXT_XSTATE */
                    "jnz 2f\n\t"
@@ -2872,19 +2872,19 @@ __ASM_GLOBAL_FUNC( __wine_syscall_dispatcher,
                    __ASM_CFI("\t.cfi_restore_state\n")
                    "5:\tmovl $0xc000000d,%eax\n\t" /* STATUS_INVALID_PARAMETER */
                    "movq %rsp,%rcx\n\t"
-                   "jmp " __ASM_LOCAL_LABEL("__wine_syscall_dispatcher_return") "\n\t"
-                   ".globl " __ASM_NAME("__wine_syscall_dispatcher_return") "\n"
-                   __ASM_NAME("__wine_syscall_dispatcher_return") ":\n\t"
+                   "jmp " __ASM_LOCAL_LABEL("__dine_syscall_dispatcher_return") "\n\t"
+                   ".globl " __ASM_NAME("__dine_syscall_dispatcher_return") "\n"
+                   __ASM_NAME("__dine_syscall_dispatcher_return") ":\n\t"
                    "movq %rdi,%rcx\n\t"
                    "movl 0xb0(%rcx),%r14d\n\t"     /* frame->syscall_flags */
                    "movq %rsi,%rax\n\t"
-                   "jmp " __ASM_LOCAL_LABEL("__wine_syscall_dispatcher_return") )
+                   "jmp " __ASM_LOCAL_LABEL("__dine_syscall_dispatcher_return") )
 
 
 /***********************************************************************
- *           __wine_unix_call_dispatcher
+ *           __dine_wnix_call_dispatcher
  */
-__ASM_GLOBAL_FUNC( __wine_unix_call_dispatcher,
+__ASM_GLOBAL_FUNC( __dine_wnix_call_dispatcher,
                    "movq %rcx,%r10\n\t"
 #ifdef __APPLE__
                    "movq %gs:0x30,%rcx\n\t"
@@ -2896,7 +2896,7 @@ __ASM_GLOBAL_FUNC( __wine_unix_call_dispatcher,
                    __ASM_CFI(".cfi_adjust_cfa_offset -8\n\t")
                    __ASM_CFI_REG_IS_AT2(rip, rcx, 0xf0,0x00)
                    "movl $0,0xb4(%rcx)\n\t"        /* frame->restore_flags */
-                   __ASM_LOCAL_LABEL("__wine_unix_call_dispatcher_prolog_end") ":\n\t"
+                   __ASM_LOCAL_LABEL("__dine_wnix_call_dispatcher_prolog_end") ":\n\t"
                    "movq %rbx,0x08(%rcx)\n\t"
                    __ASM_CFI_REG_IS_AT1(rbx, rcx, 0x08)
                    "movq %rsi,0x20(%rcx)\n\t"
@@ -2967,7 +2967,7 @@ __ASM_GLOBAL_FUNC( __wine_unix_call_dispatcher,
                    "movdqa 0x240(%rcx),%xmm14\n\t"
                    "movdqa 0x250(%rcx),%xmm15\n\t"
                    "testl $0xffff,0xb4(%rcx)\n\t"  /* frame->restore_flags */
-                   "jnz " __ASM_LOCAL_LABEL("__wine_syscall_dispatcher_return") "\n\t"
+                   "jnz " __ASM_LOCAL_LABEL("__dine_syscall_dispatcher_return") "\n\t"
                    /* switch to user stack */
                    "movq 0x88(%rcx),%rsp\n\t"
                    __ASM_CFI(".cfi_restore_state\n\t")
@@ -2984,12 +2984,12 @@ __ASM_GLOBAL_FUNC( __wine_unix_call_dispatcher,
                    "ret" )
 
 asm( ".data\n\t"
-     ".globl " __ASM_NAME("__wine_syscall_dispatcher_prolog_end_ptr") "\n"
-     __ASM_NAME("__wine_syscall_dispatcher_prolog_end_ptr") ":\n\t"
-     ".quad " __ASM_LOCAL_LABEL("__wine_syscall_dispatcher_prolog_end") "\n\t"
-     ".globl " __ASM_NAME("__wine_unix_call_dispatcher_prolog_end_ptr") "\n"
-     __ASM_NAME("__wine_unix_call_dispatcher_prolog_end_ptr") ":\n\t"
-     ".quad " __ASM_LOCAL_LABEL("__wine_unix_call_dispatcher_prolog_end") "\n\t"
+     ".globl " __ASM_NAME("__dine_syscall_dispatcher_prolog_end_ptr") "\n"
+     __ASM_NAME("__dine_syscall_dispatcher_prolog_end_ptr") ":\n\t"
+     ".quad " __ASM_LOCAL_LABEL("__dine_syscall_dispatcher_prolog_end") "\n\t"
+     ".globl " __ASM_NAME("__dine_wnix_call_dispatcher_prolog_end_ptr") "\n"
+     __ASM_NAME("__dine_wnix_call_dispatcher_prolog_end_ptr") ":\n\t"
+     ".quad " __ASM_LOCAL_LABEL("__dine_wnix_call_dispatcher_prolog_end") "\n\t"
      ".text\n\t" );
 
 #endif  /* __x86_64__ */

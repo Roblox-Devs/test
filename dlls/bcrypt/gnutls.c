@@ -2787,7 +2787,7 @@ static NTSTATUS key_asymmetric_derive_key( void *args )
     return status;
 }
 
-const unixlib_entry_t __wine_unix_call_funcs[] =
+const unixlib_entry_t __dine_wnix_call_funcs[] =
 {
     gnutls_process_attach,
     gnutls_process_detach,
@@ -2809,7 +2809,7 @@ const unixlib_entry_t __wine_unix_call_funcs[] =
     key_asymmetric_derive_key,
 };
 
-C_ASSERT( ARRAYSIZE(__wine_unix_call_funcs) == unix_funcs_count );
+C_ASSERT( ARRAYSIZE(__dine_wnix_call_funcs) == unix_funcs_count );
 
 #ifdef _WIN64
 
@@ -3322,7 +3322,7 @@ static NTSTATUS wow64_key_asymmetric_derive_key( void *args )
     return ret;
 }
 
-const unixlib_entry_t __wine_unix_call_wow64_funcs[] =
+const unixlib_entry_t __dine_wnix_call_wow64_funcs[] =
 {
     gnutls_process_attach,
     gnutls_process_detach,
@@ -3344,7 +3344,7 @@ const unixlib_entry_t __wine_unix_call_wow64_funcs[] =
     wow64_key_asymmetric_derive_key,
 };
 
-C_ASSERT( ARRAYSIZE(__wine_unix_call_wow64_funcs) == unix_funcs_count );
+C_ASSERT( ARRAYSIZE(__dine_wnix_call_wow64_funcs) == unix_funcs_count );
 
 #endif  /* _WIN64 */
 

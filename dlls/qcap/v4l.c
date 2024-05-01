@@ -577,7 +577,7 @@ static NTSTATUS v4l_device_destroy( void *args )
     return S_OK;
 }
 
-const unixlib_entry_t __wine_unix_call_funcs[] =
+const unixlib_entry_t __dine_wnix_call_funcs[] =
 {
     v4l_device_create,
     v4l_device_destroy,
@@ -593,7 +593,7 @@ const unixlib_entry_t __wine_unix_call_funcs[] =
     v4l_device_read_frame,
 };
 
-C_ASSERT( ARRAYSIZE(__wine_unix_call_funcs) == unix_funcs_count );
+C_ASSERT( ARRAYSIZE(__dine_wnix_call_funcs) == unix_funcs_count );
 
 #ifdef _WIN64
 
@@ -843,7 +843,7 @@ static NTSTATUS wow64_v4l_device_read_frame( void *args )
     return v4l_device_read_frame( &params );
 }
 
-const unixlib_entry_t __wine_unix_call_wow64_funcs[] =
+const unixlib_entry_t __dine_wnix_call_wow64_funcs[] =
 {
     wow64_v4l_device_create,
     v4l_device_destroy,
@@ -859,7 +859,7 @@ const unixlib_entry_t __wine_unix_call_wow64_funcs[] =
     wow64_v4l_device_read_frame,
 };
 
-C_ASSERT( ARRAYSIZE(__wine_unix_call_wow64_funcs) == unix_funcs_count );
+C_ASSERT( ARRAYSIZE(__dine_wnix_call_wow64_funcs) == unix_funcs_count );
 
 #endif /* _WIN64 */
 

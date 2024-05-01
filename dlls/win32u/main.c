@@ -31,7 +31,7 @@
 #include "wine/asm.h"
 #include "win32syscalls.h"
 
-void *__wine_syscall_dispatcher = NULL;
+void *__dine_syscall_dispatcher = NULL;
 
 static unixlib_handle_t win32u_handle;
 
@@ -2202,13 +2202,13 @@ BOOL WINAPI DllMain( HINSTANCE inst, DWORD reason, void *reserved )
     {
     case DLL_PROCESS_ATTACH:
         LdrDisableThreadCalloutsForDll( inst );
-        if (__wine_syscall_dispatcher) break;  /* already set through Wow64Transition */
+        if (__dine_syscall_dispatcher) break;  /* already set through Wow64Transition */
         LdrGetDllHandle( NULL, 0, &ntdll_name, &ntdll );
-        dispatcher_ptr = RtlFindExportedRoutineByName( ntdll, "__wine_syscall_dispatcher" );
-        __wine_syscall_dispatcher = *dispatcher_ptr;
+        dispatcher_ptr = RtlFindExportedRoutineByName( ntdll, "__dine_syscall_dispatcher" );
+        __dine_syscall_dispatcher = *dispatcher_ptr;
         if (!NtQueryVirtualMemory( GetCurrentProcess(), inst, MemoryWineUnixFuncs,
                                    &win32u_handle, sizeof(win32u_handle), NULL ))
-            __wine_unix_call( win32u_handle, 0, NULL );
+            __dine_wnix_call( win32u_handle, 0, NULL );
         break;
     }
     return TRUE;

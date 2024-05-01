@@ -216,18 +216,18 @@ static const RTL_OSVERSIONINFOEXW *current_version;
 static char wine_version[256];
 
 /*********************************************************************
- *                  wine_get_version
+ *                  dine_get_version
  */
-const char * CDECL wine_get_version(void)
+const char * CDECL dine_get_version(void)
 {
     return wine_version;
 }
 
 
 /*********************************************************************
- *                  wine_get_build_id
+ *                  dine_get_build_id
  */
-const char * CDECL wine_get_build_id(void)
+const char * CDECL dine_get_build_id(void)
 {
     const char *p = wine_version;
     p += strlen(p) + 1;  /* skip version */
@@ -236,9 +236,9 @@ const char * CDECL wine_get_build_id(void)
 
 
 /*********************************************************************
- *                  wine_get_host_version
+ *                  dine_get_host_version
  */
-void CDECL wine_get_host_version( const char **sysname, const char **release )
+void CDECL dine_get_host_version( const char **sysname, const char **release )
 {
     const char *p = wine_version;
     p += strlen(p) + 1;  /* skip version */

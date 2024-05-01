@@ -191,7 +191,7 @@
     __ASM_STDCALL_FUNC( name, args, \
                         "call 1f\n" \
                         "1:\tpopl %eax\n\t" \
-                        "movl " __ASM_NAME("__wine_syscall_dispatcher") "-1b(%eax),%edx\n\t" \
+                        "movl " __ASM_NAME("__dine_syscall_dispatcher") "-1b(%eax),%edx\n\t" \
                         "movl $(" #id "),%eax\n\t" \
                         "call *%edx\n\t" \
                         "ret $" #args )
@@ -204,7 +204,7 @@
                         "call *%edx\n\t" \
                         "ret $" #args )
 #  define DEFINE_SYSCALL_HELPER32() \
-    __ASM_GLOBAL_FUNC( __wine_syscall, "jmp *(" __ASM_NAME("__wine_syscall_dispatcher") ")" )
+    __ASM_GLOBAL_FUNC( __wine_syscall, "jmp *(" __ASM_NAME("__dine_syscall_dispatcher") ")" )
 # endif
 #elif defined __aarch64__
 # define __ASM_SYSCALL_FUNC(id,name) \
@@ -216,15 +216,15 @@
                        "ldr x16, [x16]\n\t" \
                        "blr x16\n\t" \
                        "ret\n" \
-                       "1:\t.quad " __ASM_NAME("__wine_syscall_dispatcher") )
+                       "1:\t.quad " __ASM_NAME("__dine_syscall_dispatcher") )
 #elif defined __arm64ec__
 # define __ASM_SYSCALL_FUNC(id,name) \
     asm( ".seh_proc " #name "\n\t" \
          ".seh_endprologue\n\t" \
          "mov x8, #%0\n\t" \
          "mov x9, x30\n\t" \
-         "adrp x16, __wine_syscall_dispatcher\n\t" \
-         "ldr x16, [x16, :lo12:__wine_syscall_dispatcher]\n\t" \
+         "adrp x16, __dine_syscall_dispatcher\n\t" \
+         "ldr x16, [x16, :lo12:__dine_syscall_dispatcher]\n\t" \
          "blr x16\n\t" \
          "ret\n\t" \
          ".seh_endproc" :: "i" (id) )
@@ -263,7 +263,7 @@
                        "jmp 1f\n\t" \
                        ".byte 0xc3\n"             /* ret */ \
                        "nop\n" \
-                       "1:\tcallq *" __ASM_NAME("__wine_syscall_dispatcher") "(%rip)\n\t" \
+                       "1:\tcallq *" __ASM_NAME("__dine_syscall_dispatcher") "(%rip)\n\t" \
                        "ret" )
 # endif
 #elif defined __arm__
@@ -279,8 +279,8 @@
                        "bx lr" )
 # define DEFINE_SYSCALL_HELPER32() \
     __ASM_GLOBAL_FUNC( __wine_syscall, \
-                       "movw r0, :lower16:" __ASM_NAME("__wine_syscall_dispatcher") "\n\t" \
-                       "movt r0, :upper16:" __ASM_NAME("__wine_syscall_dispatcher") "\n\t" \
+                       "movw r0, :lower16:" __ASM_NAME("__dine_syscall_dispatcher") "\n\t" \
+                       "movt r0, :upper16:" __ASM_NAME("__dine_syscall_dispatcher") "\n\t" \
                        "ldr r0, [r0]\n\t" \
                        "bx r0" )
 #endif

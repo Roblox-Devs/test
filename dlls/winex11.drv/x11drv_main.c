@@ -814,7 +814,7 @@ NTSTATUS x11drv_client_func( enum x11drv_client_funcs id, const void *params, UL
 }
 
 
-const unixlib_entry_t __wine_unix_call_funcs[] =
+const unixlib_entry_t __dine_wnix_call_funcs[] =
 {
     x11drv_init,
     x11drv_tablet_attach_queue,
@@ -824,7 +824,7 @@ const unixlib_entry_t __wine_unix_call_funcs[] =
 };
 
 
-C_ASSERT( ARRAYSIZE(__wine_unix_call_funcs) == unix_funcs_count );
+C_ASSERT( ARRAYSIZE(__dine_wnix_call_funcs) == unix_funcs_count );
 
 
 #ifdef _WIN64
@@ -863,7 +863,7 @@ static NTSTATUS x11drv_wow64_tablet_info( void *arg )
     return x11drv_tablet_info( &params );
 }
 
-const unixlib_entry_t __wine_unix_call_wow64_funcs[] =
+const unixlib_entry_t __dine_wnix_call_wow64_funcs[] =
 {
     x11drv_wow64_init,
     x11drv_tablet_attach_queue,
@@ -872,6 +872,6 @@ const unixlib_entry_t __wine_unix_call_wow64_funcs[] =
     x11drv_tablet_load_info,
 };
 
-C_ASSERT( ARRAYSIZE(__wine_unix_call_wow64_funcs) == unix_funcs_count );
+C_ASSERT( ARRAYSIZE(__dine_wnix_call_wow64_funcs) == unix_funcs_count );
 
 #endif /* _WIN64 */

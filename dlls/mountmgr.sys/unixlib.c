@@ -553,7 +553,7 @@ static NTSTATUS get_shell_folder( void *args )
     return STATUS_SUCCESS;
 }
 
-const unixlib_entry_t __wine_unix_call_funcs[] =
+const unixlib_entry_t __dine_wnix_call_funcs[] =
 {
     run_loop,
     dequeue_device_op,
@@ -577,4 +577,4 @@ const unixlib_entry_t __wine_unix_call_funcs[] =
     enumerate_credentials,
 };
 
-C_ASSERT( ARRAYSIZE(__wine_unix_call_funcs) == unix_funcs_count );
+C_ASSERT( ARRAYSIZE(__dine_wnix_call_funcs) == unix_funcs_count );

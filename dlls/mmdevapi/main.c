@@ -91,7 +91,7 @@ static BOOL load_driver(const WCHAR *name, DriverFuncs *driver)
         goto fail;
     }
 
-    if ((status = __wine_unix_call(driver->module_unixlib, process_attach, NULL))) {
+    if ((status = __dine_wnix_call(driver->module_unixlib, process_attach, NULL))) {
         ERR("Unable to initialize library: %lx\n", status);
         goto fail;
     }
@@ -107,7 +107,7 @@ static BOOL load_driver(const WCHAR *name, DriverFuncs *driver)
     params.name     = params.name ? params.name + 1 : path;
     params.priority = Priority_Neutral;
 
-    if ((status = __wine_unix_call(driver->module_unixlib, test_connect, &params))) {
+    if ((status = __dine_wnix_call(driver->module_unixlib, test_connect, &params))) {
         ERR("Unable to retrieve driver priority: %lx\n", status);
         goto fail;
     }
@@ -193,7 +193,7 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved)
             break;
         case DLL_PROCESS_DETACH:
             if (drvs.module_unixlib) {
-                const NTSTATUS status = __wine_unix_call(drvs.module_unixlib, process_detach, NULL);
+                const NTSTATUS status = __dine_wnix_call(drvs.module_unixlib, process_detach, NULL);
                 if (status)
                     WARN("Unable to deinitialize library: %lx\n", status);
             }

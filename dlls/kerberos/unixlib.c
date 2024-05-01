@@ -1072,7 +1072,7 @@ static NTSTATUS process_attach( void *args )
     return STATUS_DLL_NOT_FOUND;
 }
 
-const unixlib_entry_t __wine_unix_call_funcs[] =
+const unixlib_entry_t __dine_wnix_call_funcs[] =
 {
     process_attach,
     accept_context,
@@ -1088,7 +1088,7 @@ const unixlib_entry_t __wine_unix_call_funcs[] =
     verify_signature,
 };
 
-C_ASSERT( ARRAYSIZE(__wine_unix_call_funcs) == unix_funcs_count );
+C_ASSERT( ARRAYSIZE(__dine_wnix_call_funcs) == unix_funcs_count );
 
 #ifdef _WIN64
 
@@ -1394,7 +1394,7 @@ static NTSTATUS wow64_verify_signature( void *args )
     return verify_signature( &params );
 }
 
-const unixlib_entry_t __wine_unix_call_wow64_funcs[] =
+const unixlib_entry_t __dine_wnix_call_wow64_funcs[] =
 {
     process_attach,
     wow64_accept_context,
@@ -1410,7 +1410,7 @@ const unixlib_entry_t __wine_unix_call_wow64_funcs[] =
     wow64_verify_signature,
 };
 
-C_ASSERT( ARRAYSIZE(__wine_unix_call_wow64_funcs) == unix_funcs_count );
+C_ASSERT( ARRAYSIZE(__dine_wnix_call_wow64_funcs) == unix_funcs_count );
 
 #endif /* _WIN64 */
 

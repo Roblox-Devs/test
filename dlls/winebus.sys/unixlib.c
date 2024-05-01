@@ -292,7 +292,7 @@ static NTSTATUS unix_device_set_feature_report(void *args)
     return STATUS_SUCCESS;
 }
 
-const unixlib_entry_t __wine_unix_call_funcs[] =
+const unixlib_entry_t __dine_wnix_call_funcs[] =
 {
     sdl_bus_init,
     sdl_bus_wait,
@@ -313,7 +313,7 @@ const unixlib_entry_t __wine_unix_call_funcs[] =
     unix_device_set_feature_report,
 };
 
-C_ASSERT(ARRAYSIZE(__wine_unix_call_funcs) == unix_funcs_count);
+C_ASSERT(ARRAYSIZE(__dine_wnix_call_funcs) == unix_funcs_count);
 
 void bus_event_cleanup(struct bus_event *event)
 {

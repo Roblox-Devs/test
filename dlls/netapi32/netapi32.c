@@ -67,7 +67,7 @@ static BOOL WINAPI load_samba( INIT_ONCE *once, void *param, void **context )
 
 static BOOL samba_init(void)
 {
-    return __wine_unixlib_handle && InitOnceExecuteOnce( &init_once, load_samba, NULL, NULL );
+    return __dine_unixlib_handle && InitOnceExecuteOnce( &init_once, load_samba, NULL, NULL );
 }
 
 /************************************************************

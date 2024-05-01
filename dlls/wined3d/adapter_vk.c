@@ -1882,14 +1882,14 @@ static const struct wined3d_adapter_ops wined3d_adapter_vk_ops =
 
 static unsigned int wined3d_get_wine_vk_version(void)
 {
-    const char * (CDECL *wine_get_version)(void) = (void *)GetProcAddress( GetModuleHandleW(L"ntdll.dll"),
-                                                                           "wine_get_version" );
+    const char * (CDECL *dine_get_version)(void) = (void *)GetProcAddress( GetModuleHandleW(L"ntdll.dll"),
+                                                                           "dine_get_version" );
     const char *ptr;
     int major, minor;
 
-    if (!wine_get_version) return VK_MAKE_VERSION(1, 0, 0);
+    if (!dine_get_version) return VK_MAKE_VERSION(1, 0, 0);
 
-    ptr = wine_get_version();
+    ptr = dine_get_version();
     major = atoi(ptr);
 
     while (isdigit(*ptr))

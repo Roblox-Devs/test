@@ -1598,7 +1598,7 @@ static NTSTATUS process_detach( void *args )
     return STATUS_SUCCESS;
 }
 
-const unixlib_entry_t __wine_unix_call_funcs[] =
+const unixlib_entry_t __dine_wnix_call_funcs[] =
 {
     process_attach,
     process_detach,
@@ -1931,7 +1931,7 @@ static NTSTATUS wow64_schan_set_session_target( void *args )
     return schan_set_session_target(&params);
 }
 
-const unixlib_entry_t __wine_unix_call_wow64_funcs[] =
+const unixlib_entry_t __dine_wnix_call_wow64_funcs[] =
 {
     process_attach,
     process_detach,

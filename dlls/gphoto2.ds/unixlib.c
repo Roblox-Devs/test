@@ -405,7 +405,7 @@ static NTSTATUS close_ds( void *args )
 
 #endif  /* HAVE_GPHOTO2_PORT */
 
-const unixlib_entry_t __wine_unix_call_funcs[] =
+const unixlib_entry_t __dine_wnix_call_funcs[] =
 {
     get_identity,
     open_ds,
@@ -509,7 +509,7 @@ static NTSTATUS wow64_close_file( void *args )
     return close_file( &params );
 }
 
-const unixlib_entry_t __wine_unix_call_wow64_funcs[] =
+const unixlib_entry_t __dine_wnix_call_wow64_funcs[] =
 {
     get_identity,
     open_ds,

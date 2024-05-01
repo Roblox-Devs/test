@@ -333,7 +333,7 @@ static NTSTATUS scard_set_attrib( void *args )
     return SCardSetAttrib( params->handle, params->id, params->attr, params->attr_len );
 }
 
-const unixlib_entry_t __wine_unix_call_funcs[] =
+const unixlib_entry_t __dine_wnix_call_funcs[] =
 {
     scard_establish_context,
     scard_release_context,
@@ -354,7 +354,7 @@ const unixlib_entry_t __wine_unix_call_funcs[] =
     scard_set_attrib,
 };
 
-C_ASSERT( ARRAYSIZE(__wine_unix_call_funcs) == unix_funcs_count );
+C_ASSERT( ARRAYSIZE(__dine_wnix_call_funcs) == unix_funcs_count );
 
 #ifdef _WIN64
 
@@ -686,7 +686,7 @@ static NTSTATUS wow64_scard_set_attrib( void *args )
     return scard_set_attrib( &params );
 }
 
-const unixlib_entry_t __wine_unix_call_wow64_funcs[] =
+const unixlib_entry_t __dine_wnix_call_wow64_funcs[] =
 {
     wow64_scard_establish_context,
     wow64_scard_release_context,
@@ -707,6 +707,6 @@ const unixlib_entry_t __wine_unix_call_wow64_funcs[] =
     wow64_scard_set_attrib,
 };
 
-C_ASSERT( ARRAYSIZE(__wine_unix_call_wow64_funcs) == unix_funcs_count );
+C_ASSERT( ARRAYSIZE(__dine_wnix_call_wow64_funcs) == unix_funcs_count );
 
 #endif  /* _WIN64 */

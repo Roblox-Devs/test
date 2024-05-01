@@ -1927,7 +1927,7 @@ void init_locale( HMODULE module )
     user_lcid = user_locale->ilanguage;
     if (user_lcid == LOCALE_CUSTOM_UNSPECIFIED) user_lcid = LOCALE_CUSTOM_DEFAULT;
 
-    if (GetEnvironmentVariableW( L"WINEUNIXCP", bufferW, ARRAY_SIZE(bufferW) ))
+    if (GetEnvironmentVariableW( L"DINEWNIXCP", bufferW, ARRAY_SIZE(bufferW) ))
         unix_cp = wcstoul( bufferW, NULL, 10 );
 
     NtGetNlsSectionPtr( 12, NormalizationC, NULL, (void **)&norm_info, &size );

@@ -46745,7 +46745,7 @@ BOOL wine_vk_is_type_wrapped(VkObjectType type)
 
 #ifdef _WIN64
 
-const unixlib_entry_t __wine_unix_call_funcs[] =
+const unixlib_entry_t __dine_wnix_call_funcs[] =
 {
     init_vulkan,
     vk_is_available_instance_function,
@@ -47326,14 +47326,14 @@ const unixlib_entry_t __wine_unix_call_funcs[] =
     thunk64_vkWriteAccelerationStructuresPropertiesKHR,
     thunk64_vkWriteMicromapsPropertiesEXT,
 };
-C_ASSERT(ARRAYSIZE(__wine_unix_call_funcs) == unix_count);
+C_ASSERT(ARRAYSIZE(__dine_wnix_call_funcs) == unix_count);
 
 #endif /* _WIN64 */
 
 #ifdef _WIN64
-const unixlib_entry_t __wine_unix_call_wow64_funcs[] =
+const unixlib_entry_t __dine_wnix_call_wow64_funcs[] =
 #else
-const unixlib_entry_t __wine_unix_call_funcs[] =
+const unixlib_entry_t __dine_wnix_call_funcs[] =
 #endif
 {
     init_vulkan,
@@ -47915,4 +47915,4 @@ const unixlib_entry_t __wine_unix_call_funcs[] =
     thunk32_vkWriteAccelerationStructuresPropertiesKHR,
     thunk32_vkWriteMicromapsPropertiesEXT,
 };
-C_ASSERT(ARRAYSIZE(__wine_unix_call_funcs) == unix_count);
+C_ASSERT(ARRAYSIZE(__dine_wnix_call_funcs) == unix_count);

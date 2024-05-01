@@ -65,7 +65,7 @@ typedef struct MMDevice {
 
 static inline void wine_unix_call(const unsigned int code, void *args)
 {
-    const NTSTATUS status = __wine_unix_call(drvs.module_unixlib, code, args);
+    const NTSTATUS status = __dine_wnix_call(drvs.module_unixlib, code, args);
     assert(!status);
 }
 

@@ -595,7 +595,7 @@ foreach (sort keys %core_functions)
     print UNIX "\n", generate_unix_thunk( $_, $core_functions{$_} );
 }
 
-print UNIX "\nconst unixlib_entry_t __wine_unix_call_funcs[] =\n{\n";
+print UNIX "\nconst unixlib_entry_t __dine_wnix_call_funcs[] =\n{\n";
 foreach (sort keys %core_functions)
 {
     next unless needs_unix_function( $_ );

@@ -311,9 +311,9 @@ int __cdecl __wine_dbg_output( const char *str )
 }
 
 /***********************************************************************
- *		__wine_dbg_header  (NTDLL.@)
+ *		__dine_wbg_header  (NTDLL.@)
  */
-int __cdecl __wine_dbg_header( enum __wine_debug_class cls, struct __wine_debug_channel *channel,
+int __cdecl __dine_wbg_header( enum __wine_debug_class cls, struct __wine_debug_channel *channel,
                                const char *function )
 {
     static const char * const classes[] = { "fixme", "err", "warn", "trace" };

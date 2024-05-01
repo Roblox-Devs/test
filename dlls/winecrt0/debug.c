@@ -34,7 +34,7 @@ WINE_DECLARE_DEBUG_CHANNEL(timestamp);
 static const char * (__cdecl *p__wine_dbg_strdup)( const char *str );
 static int (__cdecl *p__wine_dbg_output)( const char *str );
 static unsigned char (__cdecl *p__wine_dbg_get_channel_flags)( struct __wine_debug_channel *channel );
-static int (__cdecl *p__wine_dbg_header)( enum __wine_debug_class cls,
+static int (__cdecl *p__dine_wbg_header)( enum __wine_debug_class cls,
                                           struct __wine_debug_channel *channel,
                                           const char *function );
 
@@ -178,7 +178,7 @@ static int __cdecl fallback__wine_dbg_output( const char *str )
     return fwrite( str, 1, len, stderr );
 }
 
-static int __cdecl fallback__wine_dbg_header( enum __wine_debug_class cls,
+static int __cdecl fallback__dine_wbg_header( enum __wine_debug_class cls,
                                               struct __wine_debug_channel *channel,
                                               const char *function )
 {
@@ -242,11 +242,11 @@ unsigned char __cdecl __wine_dbg_get_channel_flags( struct __wine_debug_channel 
     return p__wine_dbg_get_channel_flags( channel );
 }
 
-int __cdecl __wine_dbg_header( enum __wine_debug_class cls, struct __wine_debug_channel *channel,
+int __cdecl __dine_wbg_header( enum __wine_debug_class cls, struct __wine_debug_channel *channel,
                                const char *function )
 {
-    LOAD_FUNC( __wine_dbg_header );
-    return p__wine_dbg_header( cls, channel, function );
+    LOAD_FUNC( __dine_wbg_header );
+    return p__dine_wbg_header( cls, channel, function );
 }
 
 #endif  /* __WINE_PE_BUILD */

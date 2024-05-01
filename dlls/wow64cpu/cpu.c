@@ -303,7 +303,7 @@ NTSTATUS WINAPI BTCpuProcessInit(void)
     CONTEXT context;
     HMODULE module;
     UNICODE_STRING str = RTL_CONSTANT_STRING( L"ntdll.dll" );
-    void **p__wine_unix_call_dispatcher;
+    void **p__dine_wnix_call_dispatcher;
     WOW64INFO *wow64info = NtCurrentTeb()->TlsSlots[WOW64_TLS_WOW64INFO];
 
     if ((ULONG_PTR)syscall_32to64 >> 32)
@@ -315,7 +315,7 @@ NTSTATUS WINAPI BTCpuProcessInit(void)
     wow64info->CpuFlags |= WOW64_CPUFLAGS_MSFT64;
 
     LdrGetDllHandle( NULL, 0, &str, &module );
-    p__wine_unix_call_dispatcher = RtlFindExportedRoutineByName( module, "__wine_unix_call_dispatcher" );
+    p__dine_wnix_call_dispatcher = RtlFindExportedRoutineByName( module, "__dine_wnix_call_dispatcher" );
 
     RtlCaptureContext( &context );
     cs64_sel = context.SegCs;
@@ -329,9 +329,9 @@ NTSTATUS WINAPI BTCpuProcessInit(void)
     thunk->syscall_thunk.cs    = cs64_sel;
 
     thunk->unix_thunk.pushl   = 0x68;
-    thunk->unix_thunk.dispatcher_high = (ULONG_PTR)*p__wine_unix_call_dispatcher >> 32;
+    thunk->unix_thunk.dispatcher_high = (ULONG_PTR)*p__dine_wnix_call_dispatcher >> 32;
     thunk->unix_thunk.pushl2  = 0x68;
-    thunk->unix_thunk.dispatcher_low = (ULONG_PTR)*p__wine_unix_call_dispatcher;
+    thunk->unix_thunk.dispatcher_low = (ULONG_PTR)*p__dine_wnix_call_dispatcher;
     thunk->unix_thunk.t.ljmp  = 0xff;
     thunk->unix_thunk.t.modrm = 0x2d;
     thunk->unix_thunk.t.op    = PtrToUlong( &thunk->unix_thunk.t.addr );

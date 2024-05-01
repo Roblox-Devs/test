@@ -43,18 +43,18 @@ static NTSTATUS WINAPI unix_call_fallback( unixlib_handle_t handle, unsigned int
     return STATUS_DLL_NOT_FOUND;
 }
 
-unixlib_handle_t __wine_unixlib_handle = 0;
-NTSTATUS (WINAPI *__wine_unix_call_dispatcher)( unixlib_handle_t, unsigned int, void * ) = unix_call_fallback;
+unixlib_handle_t __dine_unixlib_handle = 0;
+NTSTATUS (WINAPI *__dine_wnix_call_dispatcher)( unixlib_handle_t, unsigned int, void * ) = unix_call_fallback;
 
 NTSTATUS WINAPI __wine_init_unix_call(void)
 {
     NTSTATUS status;
     HMODULE module = GetModuleHandleW( L"ntdll.dll" );
-    void **p__wine_unix_call_dispatcher = (void **)GetProcAddress( module, "__wine_unix_call_dispatcher" );
+    void **p__dine_wnix_call_dispatcher = (void **)GetProcAddress( module, "__dine_wnix_call_dispatcher" );
 
-    if (!p__wine_unix_call_dispatcher) return STATUS_DLL_NOT_FOUND;
+    if (!p__dine_wnix_call_dispatcher) return STATUS_DLL_NOT_FOUND;
     status = NtQueryVirtualMemory( GetCurrentProcess(), image_base(), MemoryWineUnixFuncs,
-                                   &__wine_unixlib_handle, sizeof(__wine_unixlib_handle), NULL );
-    if (!status) __wine_unix_call_dispatcher = *p__wine_unix_call_dispatcher;
+                                   &__dine_unixlib_handle, sizeof(__dine_unixlib_handle), NULL );
+    if (!status) __dine_wnix_call_dispatcher = *p__dine_wnix_call_dispatcher;
     return status;
 }

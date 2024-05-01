@@ -2821,7 +2821,7 @@ class VkGenerator(object):
 
         f.write("#ifdef _WIN64\n\n")
 
-        f.write("const unixlib_entry_t __wine_unix_call_funcs[] =\n")
+        f.write("const unixlib_entry_t __dine_wnix_call_funcs[] =\n")
         f.write("{\n")
         f.write("    init_vulkan,\n")
         f.write("    vk_is_available_instance_function,\n")
@@ -2837,14 +2837,14 @@ class VkGenerator(object):
             else:
                 f.write("    {1}{0},\n".format(vk_func.name, "thunk64_"))
         f.write("};\n")
-        f.write("C_ASSERT(ARRAYSIZE(__wine_unix_call_funcs) == unix_count);\n\n")
+        f.write("C_ASSERT(ARRAYSIZE(__dine_wnix_call_funcs) == unix_count);\n\n")
 
         f.write("#endif /* _WIN64 */\n\n")
 
         f.write("#ifdef _WIN64\n")
-        f.write("const unixlib_entry_t __wine_unix_call_wow64_funcs[] =\n")
+        f.write("const unixlib_entry_t __dine_wnix_call_wow64_funcs[] =\n")
         f.write("#else\n")
-        f.write("const unixlib_entry_t __wine_unix_call_funcs[] =\n")
+        f.write("const unixlib_entry_t __dine_wnix_call_funcs[] =\n")
         f.write("#endif\n")
         f.write("{\n")
         f.write("    init_vulkan,\n")
@@ -2861,7 +2861,7 @@ class VkGenerator(object):
             else:
                 f.write("    {1}{0},\n".format(vk_func.name, "thunk32_"))
         f.write("};\n")
-        f.write("C_ASSERT(ARRAYSIZE(__wine_unix_call_funcs) == unix_count);\n")
+        f.write("C_ASSERT(ARRAYSIZE(__dine_wnix_call_funcs) == unix_count);\n")
 
     def generate_thunks_h(self, f, prefix):
         self._generate_copyright(f)

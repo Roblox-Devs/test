@@ -78,13 +78,13 @@ static WCHAR *trash_dir;
 static WCHAR *trash_info_dir;
 static ULONG random_seed;
 
-extern void CDECL wine_get_host_version( const char **sysname, const char **release );
+extern void CDECL dine_get_host_version( const char **sysname, const char **release );
 
 static BOOL is_macos(void)
 {
     const char *sysname;
 
-    wine_get_host_version( &sysname, NULL );
+    dine_get_host_version( &sysname, NULL );
     return !strcmp( sysname, "Darwin" );
 }
 

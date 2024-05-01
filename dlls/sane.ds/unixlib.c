@@ -393,7 +393,7 @@ static NTSTATUS option_find_descriptor( void *args )
     return STATUS_NO_MORE_ENTRIES;
 }
 
-const unixlib_entry_t __wine_unix_call_funcs[] =
+const unixlib_entry_t __dine_wnix_call_funcs[] =
 {
     process_attach,
     process_detach,
@@ -489,7 +489,7 @@ static NTSTATUS wow64_option_find_descriptor( void *args )
     return option_find_descriptor( &params );
 }
 
-const unixlib_entry_t __wine_unix_call_wow64_funcs[] =
+const unixlib_entry_t __dine_wnix_call_wow64_funcs[] =
 {
     process_attach,
     process_detach,

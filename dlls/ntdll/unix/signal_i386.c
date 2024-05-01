@@ -1838,7 +1838,7 @@ static BOOL handle_syscall_fault( ucontext_t *sigcontext, void *stack_ptr,
         *(--stack) = (UINT)frame;
         *(--stack) = 0xdeadbabe;  /* return address */
         ESP_sig(sigcontext) = (DWORD)stack;
-        EIP_sig(sigcontext) = (DWORD)__wine_syscall_dispatcher_return;
+        EIP_sig(sigcontext) = (DWORD)__dine_syscall_dispatcher_return;
     }
     return TRUE;
 }
@@ -1855,17 +1855,17 @@ static BOOL handle_syscall_trap( ucontext_t *sigcontext )
 
     /* disallow single-stepping through a syscall */
 
-    if ((void *)EIP_sig( sigcontext ) == __wine_syscall_dispatcher)
+    if ((void *)EIP_sig( sigcontext ) == __dine_syscall_dispatcher)
     {
-        extern void __wine_syscall_dispatcher_prolog_end(void);
+        extern void __dine_syscall_dispatcher_prolog_end(void);
 
-        EIP_sig( sigcontext ) = (ULONG)__wine_syscall_dispatcher_prolog_end;
+        EIP_sig( sigcontext ) = (ULONG)__dine_syscall_dispatcher_prolog_end;
     }
-    else if ((void *)EIP_sig( sigcontext ) == __wine_unix_call_dispatcher)
+    else if ((void *)EIP_sig( sigcontext ) == __dine_wnix_call_dispatcher)
     {
-        extern void __wine_unix_call_dispatcher_prolog_end(void);
+        extern void __dine_wnix_call_dispatcher_prolog_end(void);
 
-        EIP_sig( sigcontext ) = (ULONG)__wine_unix_call_dispatcher_prolog_end;
+        EIP_sig( sigcontext ) = (ULONG)__dine_wnix_call_dispatcher_prolog_end;
     }
     else return FALSE;
 
@@ -2413,7 +2413,7 @@ NTSTATUS signal_alloc_thread( TEB *teb )
     }
     else thread_data->fs = gdt_fs_sel;
 
-    teb->WOW32Reserved = __wine_syscall_dispatcher;
+    teb->WOW32Reserved = __dine_syscall_dispatcher;
     thread_data->xstate_features_size = xstate_features_size;
     return STATUS_SUCCESS;
 }
@@ -2537,7 +2537,7 @@ void call_init_thunk( LPTHREAD_START_ROUTINE entry, void *arg, BOOL suspend, TEB
     frame->restore_flags |= LOWORD(CONTEXT_INTEGER);
 
     pthread_sigmask( SIG_UNBLOCK, &server_block_set, NULL );
-    __wine_syscall_dispatcher_return( frame, 0 );
+    __dine_syscall_dispatcher_return( frame, 0 );
 }
 
 
@@ -2578,9 +2578,9 @@ __ASM_GLOBAL_FUNC( signal_start_thread,
 
 
 /***********************************************************************
- *           __wine_syscall_dispatcher
+ *           __dine_syscall_dispatcher
  */
-__ASM_GLOBAL_FUNC( __wine_syscall_dispatcher,
+__ASM_GLOBAL_FUNC( __dine_syscall_dispatcher,
                    "movl %fs:0x1f8,%ecx\n\t"       /* x86_thread_data()->syscall_frame */
                    "movw $0,0x02(%ecx)\n\t"        /* frame->restore_flags */
                    "popl 0x08(%ecx)\n\t"           /* frame->eip */
@@ -2590,8 +2590,8 @@ __ASM_GLOBAL_FUNC( __wine_syscall_dispatcher,
                    __ASM_CFI(".cfi_adjust_cfa_offset 4\n\t")
                    "popl 0x04(%ecx)\n\t"           /* frame->eflags */
                    __ASM_CFI(".cfi_adjust_cfa_offset -4\n\t")
-                   ".globl " __ASM_NAME("__wine_syscall_dispatcher_prolog_end") "\n"
-                   __ASM_NAME("__wine_syscall_dispatcher_prolog_end") ":\n\t"
+                   ".globl " __ASM_NAME("__dine_syscall_dispatcher_prolog_end") "\n"
+                   __ASM_NAME("__dine_syscall_dispatcher_prolog_end") ":\n\t"
                    "movl %esp,0x0c(%ecx)\n\t"      /* frame->esp */
                    __ASM_CFI_CFA_IS_AT1(ecx, 0x0c)
                    "movw %cs,0x10(%ecx)\n\t"
@@ -2682,7 +2682,7 @@ __ASM_GLOBAL_FUNC( __wine_syscall_dispatcher,
                    "call *(%eax,%edx,4)\n\t"
                    "leal -0x34(%ebp),%esp\n"
 
-                   __ASM_LOCAL_LABEL("__wine_syscall_dispatcher_return") ":\t"
+                   __ASM_LOCAL_LABEL("__dine_syscall_dispatcher_return") ":\t"
                    "movl 0(%esp),%ecx\n\t"         /* frame->syscall_flags + (frame->restore_flags << 16) */
                    "testl $0x68 << 16,%ecx\n\t"    /* CONTEXT_FLOATING_POINT | CONTEXT_EXTENDED_REGISTERS | CONTEXT_XSAVE */
                    "jz 3f\n\t"
@@ -2762,26 +2762,26 @@ __ASM_GLOBAL_FUNC( __wine_syscall_dispatcher,
                    __ASM_CFI("\t.cfi_restore_state\n")
 
                    "6:\tmovl $0xc000000d,%eax\n\t" /* STATUS_INVALID_PARAMETER */
-                   "jmp " __ASM_LOCAL_LABEL("__wine_syscall_dispatcher_return") "\n\t"
+                   "jmp " __ASM_LOCAL_LABEL("__dine_syscall_dispatcher_return") "\n\t"
 
-                   ".globl " __ASM_NAME("__wine_syscall_dispatcher_return") "\n"
-                   __ASM_NAME("__wine_syscall_dispatcher_return") ":\n\t"
+                   ".globl " __ASM_NAME("__dine_syscall_dispatcher_return") "\n"
+                   __ASM_NAME("__dine_syscall_dispatcher_return") ":\n\t"
                    "movl 8(%esp),%eax\n\t"
                    "movl 4(%esp),%esp\n\t"
-                   "jmp " __ASM_LOCAL_LABEL("__wine_syscall_dispatcher_return") )
+                   "jmp " __ASM_LOCAL_LABEL("__dine_syscall_dispatcher_return") )
 
 
 /***********************************************************************
- *           __wine_unix_call_dispatcher
+ *           __dine_wnix_call_dispatcher
  */
-__ASM_GLOBAL_FUNC( __wine_unix_call_dispatcher,
+__ASM_GLOBAL_FUNC( __dine_wnix_call_dispatcher,
                    "movl %fs:0x1f8,%ecx\n\t"   /* x86_thread_data()->syscall_frame */
                    "movw $0,0x02(%ecx)\n\t"    /* frame->restore_flags */
                    "popl 0x08(%ecx)\n\t"       /* frame->eip */
                    __ASM_CFI(".cfi_adjust_cfa_offset -4\n\t")
                    __ASM_CFI_REG_IS_AT1(eip, ecx, 0x08)
-                   ".globl " __ASM_NAME("__wine_unix_call_dispatcher_prolog_end") "\n"
-                   __ASM_NAME("__wine_unix_call_dispatcher_prolog_end") ":\n\t"
+                   ".globl " __ASM_NAME("__dine_wnix_call_dispatcher_prolog_end") "\n"
+                   __ASM_NAME("__dine_wnix_call_dispatcher_prolog_end") ":\n\t"
                    "leal 0x10(%esp),%edx\n\t"
                    "movl %edx,0x0c(%ecx)\n\t"  /* frame->esp */
                    __ASM_CFI_CFA_IS_AT1(ecx, 0x0c)
@@ -2815,7 +2815,7 @@ __ASM_GLOBAL_FUNC( __wine_unix_call_dispatcher,
                    "call *(%eax,%edx,4)\n\t"
                    "leal 16(%esp),%esp\n\t"
                    "testw $0xffff,2(%esp)\n\t" /* frame->restore_flags */
-                   "jnz " __ASM_LOCAL_LABEL("__wine_syscall_dispatcher_return") "\n\t"
+                   "jnz " __ASM_LOCAL_LABEL("__dine_syscall_dispatcher_return") "\n\t"
                    "movl 0x08(%esp),%ecx\n\t"  /* frame->eip */
                    /* switch to user stack */
                    "movl 0x0c(%esp),%esp\n\t"  /* frame->esp */

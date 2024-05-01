@@ -774,7 +774,7 @@ static DWORD WINAPI process_init( RTL_RUN_ONCE *once, void *param, void **contex
     HMODULE module;
     UNICODE_STRING str = RTL_CONSTANT_STRING( L"ntdll.dll" );
     SYSTEM_BASIC_INFORMATION info;
-    ULONG *p__wine_syscall_dispatcher, *p__wine_unix_call_dispatcher;
+    ULONG *p__dine_syscall_dispatcher, *p__dine_wnix_call_dispatcher;
     const SYSTEM_SERVICE_TABLE *psdwhwin32;
 
     RtlWow64GetProcessMachines( GetCurrentProcess(), &current_machine, &native_machine );
@@ -824,11 +824,11 @@ static DWORD WINAPI process_init( RTL_RUN_ONCE *once, void *param, void **contex
     module = (HMODULE)(ULONG_PTR)pLdrSystemDllInitBlock->ntdll_handle;
     init_image_mapping( module );
     GET_PTR( KiRaiseUserExceptionDispatcher );
-    GET_PTR( __wine_syscall_dispatcher );
-    GET_PTR( __wine_unix_call_dispatcher );
+    GET_PTR( __dine_syscall_dispatcher );
+    GET_PTR( __dine_wnix_call_dispatcher );
 
-    *p__wine_syscall_dispatcher = PtrToUlong( pBTCpuGetBopCode() );
-    *p__wine_unix_call_dispatcher = PtrToUlong( p__wine_get_unix_opcode() );
+    *p__dine_syscall_dispatcher = PtrToUlong( pBTCpuGetBopCode() );
+    *p__dine_wnix_call_dispatcher = PtrToUlong( p__wine_get_unix_opcode() );
 
     if (wow64info->CpuFlags & WOW64_CPUFLAGS_SOFTWARE) create_cross_process_work_list( wow64info );
 

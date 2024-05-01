@@ -112,7 +112,7 @@ NTSYSAPI int WINAPI __wine_dbg_write( const char *str, unsigned int len );
 extern DECLSPEC_EXPORT unsigned char __cdecl __wine_dbg_get_channel_flags( struct __wine_debug_channel *channel );
 extern DECLSPEC_EXPORT const char * __cdecl __wine_dbg_strdup( const char *str );
 extern DECLSPEC_EXPORT int __cdecl __wine_dbg_output( const char *str );
-extern DECLSPEC_EXPORT int __cdecl __wine_dbg_header( enum __wine_debug_class cls, struct __wine_debug_channel *channel,
+extern DECLSPEC_EXPORT int __cdecl __dine_wbg_header( enum __wine_debug_class cls, struct __wine_debug_channel *channel,
                                                       const char *function );
 
 /*
@@ -185,7 +185,7 @@ static inline int __wine_dbg_cdecl wine_dbg_vlog( enum __wine_debug_class cls,
         format++;
         function = NULL;
     }
-    if ((ret = __wine_dbg_header( cls, channel, function )) != -1) ret += wine_dbg_vprintf( format, args );
+    if ((ret = __dine_wbg_header( cls, channel, function )) != -1) ret += wine_dbg_vprintf( format, args );
     return ret;
 }
 

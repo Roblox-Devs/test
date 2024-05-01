@@ -341,7 +341,7 @@ static NTSTATUS resolv_query( void *args )
     return ret;
 }
 
-const unixlib_entry_t __wine_unix_call_funcs[] =
+const unixlib_entry_t __dine_wnix_call_funcs[] =
 {
     resolv_get_searchlist,
     resolv_get_serverlist,
@@ -349,7 +349,7 @@ const unixlib_entry_t __wine_unix_call_funcs[] =
     resolv_query,
 };
 
-C_ASSERT( ARRAYSIZE(__wine_unix_call_funcs) == unix_funcs_count );
+C_ASSERT( ARRAYSIZE(__dine_wnix_call_funcs) == unix_funcs_count );
 
 #ifdef _WIN64
 
@@ -414,7 +414,7 @@ static NTSTATUS wow64_resolv_query( void *args )
     return resolv_query( &params );
 }
 
-const unixlib_entry_t __wine_unix_call_wow64_funcs[] =
+const unixlib_entry_t __dine_wnix_call_wow64_funcs[] =
 {
     wow64_resolv_get_searchlist,
     wow64_resolv_get_serverlist,
@@ -422,7 +422,7 @@ const unixlib_entry_t __wine_unix_call_wow64_funcs[] =
     wow64_resolv_query,
 };
 
-C_ASSERT( ARRAYSIZE(__wine_unix_call_wow64_funcs) == unix_funcs_count );
+C_ASSERT( ARRAYSIZE(__dine_wnix_call_wow64_funcs) == unix_funcs_count );
 
 #endif  /* _WIN64 */
 

@@ -606,7 +606,7 @@ static HRESULT android_init( void *arg )
     return STATUS_SUCCESS;
 }
 
-const unixlib_entry_t __wine_unix_call_funcs[] =
+const unixlib_entry_t __dine_wnix_call_funcs[] =
 {
     android_dispatch_ioctl,
     android_init,
@@ -616,4 +616,4 @@ const unixlib_entry_t __wine_unix_call_funcs[] =
 };
 
 
-C_ASSERT( ARRAYSIZE(__wine_unix_call_funcs) == unix_funcs_count );
+C_ASSERT( ARRAYSIZE(__dine_wnix_call_funcs) == unix_funcs_count );
